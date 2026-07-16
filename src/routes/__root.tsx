@@ -77,14 +77,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Atlas Sanctum — Regenerative Value Platform" },
+      { name: "description", content: "Atlas Sanctum unites ecosystems, knowledge, capital and innovation to regenerate our planet and humanity." },
+      { property: "og:title", content: "Atlas Sanctum — Regenerative Value Platform" },
+      { property: "og:description", content: "Building a regenerative future for all life." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
