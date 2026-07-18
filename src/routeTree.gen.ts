@@ -9,16 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as MissionControlRouteImport } from './routes/mission-control'
 import { Route as LabsRouteImport } from './routes/labs'
 import { Route as KnowledgeRouteImport } from './routes/knowledge'
 import { Route as InvestmentRouteImport } from './routes/investment'
 import { Route as IntelligenceRouteImport } from './routes/intelligence'
+import { Route as GovernanceRouteImport } from './routes/governance'
 import { Route as ExchangeRouteImport } from './routes/exchange'
 import { Route as EcosystemsRouteImport } from './routes/ecosystems'
+import { Route as DevelopersRouteImport } from './routes/developers'
 import { Route as CommunityRouteImport } from './routes/community'
+import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MissionControlRoute = MissionControlRouteImport.update({
   id: '/mission-control',
   path: '/mission-control',
@@ -44,6 +53,11 @@ const IntelligenceRoute = IntelligenceRouteImport.update({
   path: '/intelligence',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GovernanceRoute = GovernanceRouteImport.update({
+  id: '/governance',
+  path: '/governance',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ExchangeRoute = ExchangeRouteImport.update({
   id: '/exchange',
   path: '/exchange',
@@ -54,9 +68,19 @@ const EcosystemsRoute = EcosystemsRouteImport.update({
   path: '/ecosystems',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DevelopersRoute = DevelopersRouteImport.update({
+  id: '/developers',
+  path: '/developers',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CommunityRoute = CommunityRouteImport.update({
   id: '/community',
   path: '/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnalyticsRoute = AnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -67,88 +91,123 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/community': typeof CommunityRoute
+  '/developers': typeof DevelopersRoute
   '/ecosystems': typeof EcosystemsRoute
   '/exchange': typeof ExchangeRoute
+  '/governance': typeof GovernanceRoute
   '/intelligence': typeof IntelligenceRoute
   '/investment': typeof InvestmentRoute
   '/knowledge': typeof KnowledgeRoute
   '/labs': typeof LabsRoute
   '/mission-control': typeof MissionControlRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/community': typeof CommunityRoute
+  '/developers': typeof DevelopersRoute
   '/ecosystems': typeof EcosystemsRoute
   '/exchange': typeof ExchangeRoute
+  '/governance': typeof GovernanceRoute
   '/intelligence': typeof IntelligenceRoute
   '/investment': typeof InvestmentRoute
   '/knowledge': typeof KnowledgeRoute
   '/labs': typeof LabsRoute
   '/mission-control': typeof MissionControlRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/community': typeof CommunityRoute
+  '/developers': typeof DevelopersRoute
   '/ecosystems': typeof EcosystemsRoute
   '/exchange': typeof ExchangeRoute
+  '/governance': typeof GovernanceRoute
   '/intelligence': typeof IntelligenceRoute
   '/investment': typeof InvestmentRoute
   '/knowledge': typeof KnowledgeRoute
   '/labs': typeof LabsRoute
   '/mission-control': typeof MissionControlRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/analytics'
     | '/community'
+    | '/developers'
     | '/ecosystems'
     | '/exchange'
+    | '/governance'
     | '/intelligence'
     | '/investment'
     | '/knowledge'
     | '/labs'
     | '/mission-control'
+    | '/settings'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/analytics'
     | '/community'
+    | '/developers'
     | '/ecosystems'
     | '/exchange'
+    | '/governance'
     | '/intelligence'
     | '/investment'
     | '/knowledge'
     | '/labs'
     | '/mission-control'
+    | '/settings'
   id:
     | '__root__'
     | '/'
+    | '/analytics'
     | '/community'
+    | '/developers'
     | '/ecosystems'
     | '/exchange'
+    | '/governance'
     | '/intelligence'
     | '/investment'
     | '/knowledge'
     | '/labs'
     | '/mission-control'
+    | '/settings'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnalyticsRoute: typeof AnalyticsRoute
   CommunityRoute: typeof CommunityRoute
+  DevelopersRoute: typeof DevelopersRoute
   EcosystemsRoute: typeof EcosystemsRoute
   ExchangeRoute: typeof ExchangeRoute
+  GovernanceRoute: typeof GovernanceRoute
   IntelligenceRoute: typeof IntelligenceRoute
   InvestmentRoute: typeof InvestmentRoute
   KnowledgeRoute: typeof KnowledgeRoute
   LabsRoute: typeof LabsRoute
   MissionControlRoute: typeof MissionControlRoute
+  SettingsRoute: typeof SettingsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mission-control': {
       id: '/mission-control'
       path: '/mission-control'
@@ -184,6 +243,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IntelligenceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/governance': {
+      id: '/governance'
+      path: '/governance'
+      fullPath: '/governance'
+      preLoaderRoute: typeof GovernanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/exchange': {
       id: '/exchange'
       path: '/exchange'
@@ -198,11 +264,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EcosystemsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/developers': {
+      id: '/developers'
+      path: '/developers'
+      fullPath: '/developers'
+      preLoaderRoute: typeof DevelopersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/community': {
       id: '/community'
       path: '/community'
       fullPath: '/community'
       preLoaderRoute: typeof CommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/analytics': {
+      id: '/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AnalyticsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -217,14 +297,18 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnalyticsRoute: AnalyticsRoute,
   CommunityRoute: CommunityRoute,
+  DevelopersRoute: DevelopersRoute,
   EcosystemsRoute: EcosystemsRoute,
   ExchangeRoute: ExchangeRoute,
+  GovernanceRoute: GovernanceRoute,
   IntelligenceRoute: IntelligenceRoute,
   InvestmentRoute: InvestmentRoute,
   KnowledgeRoute: KnowledgeRoute,
   LabsRoute: LabsRoute,
   MissionControlRoute: MissionControlRoute,
+  SettingsRoute: SettingsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
