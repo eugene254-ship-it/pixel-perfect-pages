@@ -125,7 +125,7 @@ function Developers() {
                 </div>
               ))}
             </div>
-            <Sparkline color="#22d3ee" width={280} height={40} className="mt-3" />
+            <div className="mt-3"><Sparkline color="#22d3ee" /></div>
           </section>
 
           <section className="rounded-xl border border-white/10 bg-white/[0.02] p-5">

@@ -103,7 +103,7 @@ function Analytics() {
                 {a.predictive.map((p) => (
                   <div key={p.n}>
                     <div className="flex justify-between text-[11px]"><span className="text-slate-300">{p.n}</span><span className="text-emerald-400">↑ {p.ch}</span></div>
-                    <Sparkline color="#4ade80" width={220} height={22} />
+                    <div className="mt-1"><Sparkline color="#4ade80" /></div>
                   </div>
                 ))}
               </div>
