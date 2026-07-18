@@ -1,0 +1,256 @@
+{
+  "nav": [
+    { "icon": "Home", "label": "Home", "to": "/" },
+    { "icon": "Target", "label": "Mission Control", "to": "/mission-control" },
+    { "icon": "Sprout", "label": "Ecosystems", "to": "/ecosystems" },
+    { "icon": "Repeat", "label": "Regenerative Value Exchange", "to": "/exchange" },
+    { "icon": "Brain", "label": "Impact Intelligence", "to": "/intelligence" },
+    { "icon": "BookOpen", "label": "Knowledge Hub", "to": "/knowledge" },
+    { "icon": "FlaskConical", "label": "Innovation Labs", "to": "/labs" },
+    { "icon": "Wallet", "label": "Investment Hub", "to": "/investment" },
+    { "icon": "Users", "label": "Community", "to": "/community" },
+    { "icon": "Landmark", "label": "Governance", "to": "/governance" },
+    { "icon": "BarChart3", "label": "Data & Analytics", "to": "/analytics" },
+    { "icon": "Code2", "label": "Developers", "to": "/developers" },
+    { "icon": "Settings", "label": "System Settings", "to": "/settings" }
+  ],
+  "notifications": [
+    { "id": "n1", "title": "New Proposal Submitted", "desc": "Regenerative Agriculture Fund is now open for voting.", "time": "2m ago", "unread": true, "to": "/governance" },
+    { "id": "n2", "title": "High Deforestation Alert", "desc": "Anomaly detected in Amazon Basin.", "time": "12m ago", "unread": true, "to": "/analytics" },
+    { "id": "n3", "title": "Research Published", "desc": "Ocean Alkalinity Enhancement — Nature Sustainability.", "time": "1h ago", "unread": true, "to": "/knowledge" },
+    { "id": "n4", "title": "New Lab Verified", "desc": "TerraGenesis Lab was verified in Nairobi.", "time": "3h ago", "unread": true, "to": "/labs" },
+    { "id": "n5", "title": "Investment Milestone", "desc": "$1.42B deployed across 24,153 active projects.", "time": "6h ago", "unread": true, "to": "/investment" },
+    { "id": "n6", "title": "Community Achievement", "desc": "10,000 families supported in Kenya.", "time": "1d ago", "unread": true, "to": "/community" },
+    { "id": "n7", "title": "API Key Rotated", "desc": "Production key rotated successfully.", "time": "2d ago", "unread": true, "to": "/developers" }
+  ],
+  "searchIndex": [
+    { "type": "Article",  "title": "Integrating Mycorrhizal Networks in Regenerative Agriculture", "group": "Knowledge Hub", "to": "/knowledge", "keywords": "mycorrhizal soil biology agriculture research paper nature" },
+    { "type": "Case",     "title": "Restoring 10,000 Hectares of Degraded Land in Kenya", "group": "Knowledge Hub", "to": "/knowledge", "keywords": "restoration kenya degraded land case study" },
+    { "type": "Dataset",  "title": "Global Soil Organic Carbon Dataset v2.1", "group": "Knowledge Hub", "to": "/knowledge", "keywords": "soil carbon dataset fao" },
+    { "type": "Practice", "title": "5 Principles for Building Regenerative Communities", "group": "Knowledge Hub", "to": "/knowledge", "keywords": "communities principles best practice" },
+    { "type": "Topic",    "title": "Blue Carbon", "group": "Knowledge Hub", "to": "/knowledge", "keywords": "trending oceans blue carbon" },
+    { "type": "Topic",    "title": "Soil Health", "group": "Knowledge Hub", "to": "/knowledge", "keywords": "trending soil regeneration" },
+    { "type": "Insight",  "title": "Amazon Reforestation Impact Surging",  "group": "Impact Intelligence", "to": "/intelligence", "keywords": "forest guardian ai insight reforestation amazon carbon" },
+    { "type": "Insight",  "title": "Ocean Health Improvement Detected",    "group": "Impact Intelligence", "to": "/intelligence", "keywords": "oceanus coral reef restoration" },
+    { "type": "Insight",  "title": "Soil Regeneration Opportunity",        "group": "Impact Intelligence", "to": "/intelligence", "keywords": "terralens degraded land" },
+    { "type": "Insight",  "title": "Impact Investment Trend",              "group": "Impact Intelligence", "to": "/intelligence", "keywords": "capital flow roi regenerative agriculture" },
+    { "type": "KPI",      "title": "Carbon Sequestration — 1.42 Gt",       "group": "Impact Intelligence", "to": "/intelligence", "keywords": "kpi carbon sequestration co2" },
+    { "type": "KPI",      "title": "Biodiversity Impact — 8,721 species",  "group": "Impact Intelligence", "to": "/intelligence", "keywords": "biodiversity species habitats" },
+    { "type": "KPI",      "title": "Water Restored — 4.28B m³",            "group": "Impact Intelligence", "to": "/intelligence", "keywords": "water lakes rivers" },
+    { "type": "KPI",      "title": "Communities Empowered — 12.6M people", "group": "Impact Intelligence", "to": "/intelligence", "keywords": "communities empowered" }
+  ],
+  "governance": {
+    "summary": [
+      { "l": "Active Proposals", "v": "24",     "ch": "+12%" },
+      { "l": "Active Votes",     "v": "8",      "ch": "+5%"  },
+      { "l": "Policies",         "v": "128",    "ch": "+8%"  },
+      { "l": "Participants",     "v": "12,543", "ch": "+15%" },
+      { "l": "Treasury",         "v": "$2.48B", "ch": "+9%"  }
+    ],
+    "proposals": [
+      { "t": "Regenerative Agriculture Fund",  "sub": "Funding Allocation",    "ends": "Ends in 2d 14h", "pct": 78 },
+      { "t": "Ocean Restoration Initiative",   "sub": "Ecosystem Program",     "ends": "Ends in 1d 6h",  "pct": 64 },
+      { "t": "Carbon Credit Standard Update",  "sub": "Policy Amendment",      "ends": "Ends in 5d 3h",  "pct": 52 },
+      { "t": "Community Health Network",       "sub": "Impact Program",        "ends": "Ends in 3d 12h", "pct": 87 }
+    ],
+    "councils": [
+      { "n": "Community",          "sub": "Citizens & Stakeholders",   "icon": "Users",       "c": "#22d3ee", "angle": -90 },
+      { "n": "Guardians Council",  "sub": "Ethics & Values",           "icon": "ShieldCheck", "c": "#facc15", "angle": -30 },
+      { "n": "Finance Council",    "sub": "Impact & Sustainability",   "icon": "Leaf",        "c": "#4ade80", "angle": 30  },
+      { "n": "Technology Council", "sub": "Innovation & Security",     "icon": "Cpu",         "c": "#22d3ee", "angle": 90  },
+      { "n": "Youth Council",      "sub": "Future Generations",        "icon": "Sprout",      "c": "#facc15", "angle": 150 },
+      { "n": "Indigenous Council", "sub": "Traditional Knowledge",     "icon": "Sparkles",    "c": "#c084fc", "angle": 210 },
+      { "n": "Operations Council", "sub": "Implementation & Scale",    "icon": "Cog",         "c": "#22d3ee", "angle": 270 },
+      { "n": "Scientific Council", "sub": "Research & Evidence",       "icon": "FlaskConical","c": "#22d3ee", "angle": 330 }
+    ],
+    "principles": [
+      { "n": "Stewardship",   "d": "We act as stewards of the Earth and all life.",         "c": "#4ade80" },
+      { "n": "Transparency",  "d": "All actions are open, verifiable and traceable.",        "c": "#22d3ee" },
+      { "n": "Inclusion",     "d": "Every voice matters. Diversity drives wisdom.",          "c": "#c084fc" },
+      { "n": "Integrity",     "d": "We align words, actions and outcomes.",                  "c": "#facc15" },
+      { "n": "Regeneration",  "d": "We create net positive impact for all.",                 "c": "#4ade80" },
+      { "n": "Justice",       "d": "We ensure fairness across generations.",                 "c": "#f472b6" }
+    ],
+    "voting": [
+      { "t": "Regenerative Agriculture Fund", "pct": 78, "votes": "2,453 votes" },
+      { "t": "Ocean Restoration Initiative",  "pct": 64, "votes": "1,987 votes" },
+      { "t": "Carbon Credit Standard Update", "pct": 52, "votes": "1,245 votes" },
+      { "t": "Community Health Network",      "pct": 87, "votes": "2,987 votes" }
+    ],
+    "process": ["PROPOSAL","DELIBERATION","VOTING","EXECUTION","IMPACT"],
+    "quorum":  [
+      { "l": "QUORUM",         "v": "42%",   "sub": "Required 20%" },
+      { "l": "PARTICIPATION",  "v": "68%",   "sub": "12,543 Active" },
+      { "l": "TRANSPARENCY",   "v": "100%",  "sub": "On-chain" },
+      { "l": "EXECUTION RATE", "v": "91%",   "sub": "This Quarter" },
+      { "l": "IMPACT SCORE",   "v": "8.7/10","sub": "High Impact" }
+    ]
+  },
+  "analytics": {
+    "top": [
+      { "l": "TOTAL DATA SOURCES", "v": "2,487", "ch": "+12.4%", "icon": "Database",   "c": "#22d3ee" },
+      { "l": "LIVE DATA STREAMS",  "v": "568",   "ch": "+8.7%",  "icon": "Activity",   "c": "#4ade80" },
+      { "l": "DATA RECORDS",       "v": "12.8B", "ch": "+15.3%", "icon": "Layers",     "c": "#22d3ee" },
+      { "l": "COVERAGE",           "v": "192",   "sub": "Countries", "icon": "Globe2", "c": "#38bdf8" },
+      { "l": "DATA QUALITY SCORE", "v": "94.6%", "ch": "+3.2%",  "icon": "ShieldCheck","c": "#4ade80" },
+      { "l": "INSIGHTS GENERATED", "v": "8,732", "ch": "+18.6%", "icon": "Lightbulb",  "c": "#facc15" }
+    ],
+    "impact": [
+      { "l": "CARBON SEQUESTERED",    "v": "2.43B", "ch": "+18.8%", "icon": "Leaf",       "c": "#4ade80" },
+      { "l": "ECOSYSTEMS RESTORED",   "v": "12.4M", "ch": "+22.1%", "icon": "Sprout",     "c": "#a3e635" },
+      { "l": "LIVES IMPACTED",        "v": "78.6M", "ch": "+16.8%", "icon": "Heart",      "c": "#c084fc" },
+      { "l": "INVESTMENTS MOBILIZED", "v": "$24.7B","ch": "+31.2%", "icon": "TrendingUp", "c": "#facc15" }
+    ],
+    "alerts": [
+      { "t": "High Deforestation Detected",  "loc": "Brazil - Amazon Basin",       "time": "2m ago",  "c": "#f87171" },
+      { "t": "Ocean Temperature Anomaly",    "loc": "Pacific Ocean Region",        "time": "15m ago", "c": "#facc15" },
+      { "t": "Positive Regeneration Trend",  "loc": "Great Green Wall Initiative", "time": "1h ago",  "c": "#4ade80" },
+      { "t": "Water Quality Improvement",    "loc": "Lake Victoria Basin",         "time": "2h ago",  "c": "#22d3ee" }
+    ],
+    "predictive": [
+      { "n": "Carbon Sequestration",  "ch": "+19.6%" },
+      { "n": "Ecosystem Restoration", "ch": "+22.8%" },
+      { "n": "Biodiversity Index",    "ch": "+16.2%" },
+      { "n": "Community Wellbeing",   "ch": "+18.4%" }
+    ],
+    "quality": [
+      { "n": "Accuracy",     "v": "96.1%", "c": "#4ade80" },
+      { "n": "Completeness", "v": "93.7%", "c": "#22d3ee" },
+      { "n": "Consistency",  "v": "94.2%", "c": "#facc15" },
+      { "n": "Timeliness",   "v": "95.1%", "c": "#c084fc" },
+      { "n": "Validity",     "v": "93.9%", "c": "#a3e635" }
+    ],
+    "streams": [
+      { "n": "Satellite Imagery",       "r": "2.4 TB/day" },
+      { "n": "IoT Environmental Sensors","r": "1.8 TB/day" },
+      { "n": "Climate Stations",        "r": "856 GB/day" },
+      { "n": "Ocean Buoys",             "r": "642 GB/day" },
+      { "n": "Community Submissions",   "r": "128 GB/day" }
+    ],
+    "sectors": [
+      { "n": "Climate",      "v": 32.6, "c": "#4ade80" },
+      { "n": "Oceans",       "v": 18.7, "c": "#22d3ee" },
+      { "n": "Biodiversity", "v": 16.4, "c": "#a3e635" },
+      { "n": "Agriculture",  "v": 14.8, "c": "#facc15" },
+      { "n": "Health",       "v": 8.9,  "c": "#c084fc" },
+      { "n": "Education",    "v": 5.4,  "c": "#f472b6" },
+      { "n": "Other",        "v": 3.2,  "c": "#94a3b8" }
+    ],
+    "sources": [
+      { "n": "Sentinel Satellites",   "v": "28.4%" },
+      { "n": "IoT Sensor Network",    "v": "23.7%" },
+      { "n": "Community Reports",     "v": "17.8%" },
+      { "n": "Partner Organizations", "v": "15.2%" },
+      { "n": "Public Datasets",       "v": "14.9%" }
+    ],
+    "pipeline": ["DATA COLLECTION","INGESTION LAYER","DATA PROCESSING","DATA STORAGE","ANALYTICS ENGINE","VISUALIZATION","ACTION & IMPACT"]
+  },
+  "developers": {
+    "top": [
+      { "l": "TOTAL API CALLS (24H)", "v": "2.45M", "ch": "+24.6%", "icon": "Activity",  "c": "#4ade80" },
+      { "l": "ACTIVE DEVELOPERS",     "v": "4,892", "ch": "+12.4%", "icon": "Users",     "c": "#22d3ee" },
+      { "l": "APPLICATIONS",          "v": "312",   "ch": "+8.7%",  "icon": "Layers",    "c": "#c084fc" },
+      { "l": "SDK DOWNLOADS",         "v": "1.26K", "ch": "+18.3%", "icon": "Download",  "c": "#facc15" },
+      { "l": "UPTIME",                "v": "99.99%","sub": "30d",   "icon": "ShieldCheck","c": "#4ade80" },
+      { "l": "SUCCESS RATE",          "v": "99.42%","ch": "-0.3%",  "icon": "TrendingUp","c": "#a3e635" }
+    ],
+    "endpoints": [
+      { "m": "GET",  "p": "/v1/impact/metrics",       "d": "Get impact metrics",       "r": "1000 / min" },
+      { "m": "POST", "p": "/v1/assets/tokenize",      "d": "Tokenize an asset",         "r": "500 / min" },
+      { "m": "GET",  "p": "/v1/earth/observations",   "d": "Get Earth observation data","r": "800 / min" },
+      { "m": "POST", "p": "/v1/finance/transactions", "d": "Create financial transaction","r": "300 / min" },
+      { "m": "GET",  "p": "/v1/identity/verify",      "d": "Verify digital identity",   "r": "1000 / min" },
+      { "m": "PUT",  "p": "/v1/community/proposals",  "d": "Update governance proposal","r": "200 / min" }
+    ],
+    "apps": [
+      { "n": "GreenEarth Dashboard",  "env": "Production",   "calls": "12.4M calls", "c": "#4ade80" },
+      { "n": "Ocean Restore Tracker", "env": "Production",   "calls": "8.7M calls",  "c": "#22d3ee" },
+      { "n": "EcoCredit DeFi App",    "env": "Staging",      "calls": "3.2M calls",  "c": "#a3e635" },
+      { "n": "Impact Analytics Engine","env": "Production",  "calls": "2.1M calls",  "c": "#facc15" },
+      { "n": "Community DAO Portal",  "env": "Development",  "calls": "1.3M calls",  "c": "#c084fc" }
+    ],
+    "recent": [
+      { "m": "GET",  "p": "/v1/impact/metrics?region=africa","code": 200, "ms": "120 ms", "t": "2s ago" },
+      { "m": "POST", "p": "/v1/assets/tokenize",             "code": 201, "ms": "340 ms", "t": "5s ago" },
+      { "m": "GET",  "p": "/v1/earth/observations?bbox=...", "code": 200, "ms": "210 ms", "t": "6s ago" },
+      { "m": "GET",  "p": "/v1/finance/balances",            "code": 200, "ms": "98 ms",  "t": "8s ago" },
+      { "m": "POST", "p": "/v1/identity/verify",             "code": 200, "ms": "150 ms", "t": "10s ago" }
+    ],
+    "sdks": [
+      { "n": "JavaScript (Node.js)", "v": "v2.3.0" },
+      { "n": "Python",               "v": "v2.3.0" },
+      { "n": "TypeScript",           "v": "v2.3.0" },
+      { "n": "Go",                   "v": "v2.3.0" },
+      { "n": "Rust",                 "v": "v2.3.0" },
+      { "n": "Java",                 "v": "v2.3.0" }
+    ],
+    "status": [
+      { "n": "API Gateway",           "s": "Operational" },
+      { "n": "Authentication Service","s": "Operational" },
+      { "n": "Data Service",          "s": "Operational" },
+      { "n": "Blockchain Network",    "s": "Operational" },
+      { "n": "AI Inference Engine",   "s": "Operational" },
+      { "n": "Storage Service",       "s": "Operational" }
+    ],
+    "quickstart": [
+      { "n": 1, "t": "Create Account",     "d": "Sign up and get your API keys" },
+      { "n": 2, "t": "Choose a SDK",       "d": "Select your preferred SDK" },
+      { "n": 3, "t": "Make Your First Call","d": "Test the API with a sample request" },
+      { "n": 4, "t": "Integrate & Build",   "d": "Integrate and build your solution" }
+    ]
+  },
+  "settings": {
+    "overview": [
+      { "v": "126",    "l": "Services",    "sub": "Active",    "icon": "Layers",      "c": "#22d3ee" },
+      { "v": "98.7%",  "l": "Health Score","sub": "Excellent", "icon": "ShieldCheck", "c": "#4ade80" },
+      { "v": "99.99%", "l": "Uptime",      "sub": "30 Days",   "icon": "CloudUpload", "c": "#38bdf8" },
+      { "v": "2.45 PB","l": "Data Stored", "sub": "Encrypted", "icon": "Database",    "c": "#facc15" },
+      { "v": "4,892",  "l": "Users",       "sub": "Active",    "icon": "Users",       "c": "#c084fc" },
+      { "v": "192",    "l": "Regions",     "sub": "Connected", "icon": "Globe2",      "c": "#22d3ee" }
+    ],
+    "status": [
+      { "n": "API Gateway",       "s": "Operational" },
+      { "n": "Database Cluster",  "s": "Operational" },
+      { "n": "AI Services",       "s": "Operational" },
+      { "n": "Blockchain Node",   "s": "Operational" },
+      { "n": "Storage Systems",   "s": "Operational" },
+      { "n": "CDN & Edge Network","s": "Operational" }
+    ],
+    "quick": [
+      { "n": "Maintenance Mode",  "on": false, "icon": "Wrench" },
+      { "n": "Auto Backup",       "on": true,  "icon": "CloudUpload" },
+      { "n": "Performance Mode",  "on": true,  "icon": "Zap" },
+      { "n": "Debug Mode",        "on": false, "icon": "Bug" },
+      { "n": "AI Insights",       "on": true,  "icon": "Sparkles" },
+      { "n": "Data Compression",  "on": true,  "icon": "Layers" }
+    ],
+    "configuration": [
+      { "n": "General Settings",     "d": "Basic platform configuration",         "icon": "Settings" },
+      { "n": "Language & Region",    "d": "Localization and regional settings",   "icon": "Globe2" },
+      { "n": "Date & Time",          "d": "Time zone and format settings",        "icon": "Clock" },
+      { "n": "Units & Measurements", "d": "System units and standards",           "icon": "Ruler" },
+      { "n": "Appearance",           "d": "Theme, colors and branding",           "icon": "Palette" }
+    ],
+    "security": [
+      { "n": "Authentication",  "d": "Manage login and verification",     "icon": "Lock" },
+      { "n": "Access Control",  "d": "Roles, permissions and policies",   "icon": "Users" },
+      { "n": "Encryption",      "d": "Data encryption and keys",           "icon": "ShieldCheck" },
+      { "n": "Network Security","d": "Firewalls and network rules",        "icon": "Wifi" },
+      { "n": "Threat Protection","d": "AI-powered threat detection",       "icon": "AlertTriangle" }
+    ],
+    "integrations": [
+      { "n": "API Management",       "d": "Manage APIs and rate limits",         "icon": "Code2" },
+      { "n": "Third-party Services", "d": "Connected external services",         "icon": "Layers" },
+      { "n": "Data Sources",         "d": "External data connections",           "icon": "Database" },
+      { "n": "Blockchain Networks",  "d": "Configure network connections",       "icon": "Hexagon" },
+      { "n": "IoT & Devices",        "d": "Connected devices management",         "icon": "Cpu" }
+    ],
+    "automations": [
+      { "n": "Workflow Builder",   "d": "Create and manage workflows",       "icon": "GitBranch" },
+      { "n": "Scheduled Tasks",    "d": "Cron jobs and automated tasks",     "icon": "Clock" },
+      { "n": "Alerts & Triggers",  "d": "Event-driven automations",          "icon": "Bell" },
+      { "n": "AI Automation",      "d": "Intelligent process automation",    "icon": "Brain" },
+      { "n": "Webhooks",           "d": "Real-time event notifications",     "icon": "Zap" }
+    ]
+  }
+}
