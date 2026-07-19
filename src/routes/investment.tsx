@@ -58,7 +58,7 @@ const impact = [
 function Investment() {
   return (
     <AppShell active="Investment Hub">
-      <div className="p-6 space-y-6">
+      <div className="p-6 space-y-6" data-testid="page-ready">
         <div className="flex justify-between items-center">
           <div>
             <h1 className="text-[24px] font-semibold text-white tracking-tight">INVESTMENT HUB</h1>

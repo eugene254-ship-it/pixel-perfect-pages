@@ -60,7 +60,7 @@ const txs = [
 function Exchange() {
   return (
     <AppShell active="Regenerative Value Exchange">
-      <div className="p-6 space-y-6">
+      <div className="p-6 space-y-6" data-testid="page-ready">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-[24px] font-semibold text-white tracking-tight">REGENERATIVE VALUE EXCHANGE</h1>

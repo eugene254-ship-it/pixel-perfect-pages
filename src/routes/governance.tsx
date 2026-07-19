@@ -18,7 +18,7 @@ function Governance() {
   const { summary, proposals, councils, principles, voting, process, quorum } = atlas.governance;
   return (
     <AppShell active="Governance">
-      <div className="p-6 space-y-6">
+      <div className="p-6 space-y-6" data-testid="page-ready">
         <div className="flex justify-between items-start">
           <div>
             <h1 className="text-[24px] font-semibold text-white tracking-tight">GOVERNANCE COMMAND CENTER</h1>
