@@ -24,20 +24,20 @@
     { "id": "n7", "title": "API Key Rotated", "desc": "Production key rotated successfully.", "time": "2d ago", "unread": true, "to": "/developers" }
   ],
   "searchIndex": [
-    { "type": "Article",  "title": "Integrating Mycorrhizal Networks in Regenerative Agriculture", "group": "Knowledge Hub", "to": "/knowledge", "keywords": "mycorrhizal soil biology agriculture research paper nature" },
-    { "type": "Case",     "title": "Restoring 10,000 Hectares of Degraded Land in Kenya", "group": "Knowledge Hub", "to": "/knowledge", "keywords": "restoration kenya degraded land case study" },
-    { "type": "Dataset",  "title": "Global Soil Organic Carbon Dataset v2.1", "group": "Knowledge Hub", "to": "/knowledge", "keywords": "soil carbon dataset fao" },
-    { "type": "Practice", "title": "5 Principles for Building Regenerative Communities", "group": "Knowledge Hub", "to": "/knowledge", "keywords": "communities principles best practice" },
-    { "type": "Topic",    "title": "Blue Carbon", "group": "Knowledge Hub", "to": "/knowledge", "keywords": "trending oceans blue carbon" },
-    { "type": "Topic",    "title": "Soil Health", "group": "Knowledge Hub", "to": "/knowledge", "keywords": "trending soil regeneration" },
-    { "type": "Insight",  "title": "Amazon Reforestation Impact Surging",  "group": "Impact Intelligence", "to": "/intelligence", "keywords": "forest guardian ai insight reforestation amazon carbon" },
-    { "type": "Insight",  "title": "Ocean Health Improvement Detected",    "group": "Impact Intelligence", "to": "/intelligence", "keywords": "oceanus coral reef restoration" },
-    { "type": "Insight",  "title": "Soil Regeneration Opportunity",        "group": "Impact Intelligence", "to": "/intelligence", "keywords": "terralens degraded land" },
-    { "type": "Insight",  "title": "Impact Investment Trend",              "group": "Impact Intelligence", "to": "/intelligence", "keywords": "capital flow roi regenerative agriculture" },
-    { "type": "KPI",      "title": "Carbon Sequestration — 1.42 Gt",       "group": "Impact Intelligence", "to": "/intelligence", "keywords": "kpi carbon sequestration co2" },
-    { "type": "KPI",      "title": "Biodiversity Impact — 8,721 species",  "group": "Impact Intelligence", "to": "/intelligence", "keywords": "biodiversity species habitats" },
-    { "type": "KPI",      "title": "Water Restored — 4.28B m³",            "group": "Impact Intelligence", "to": "/intelligence", "keywords": "water lakes rivers" },
-    { "type": "KPI",      "title": "Communities Empowered — 12.6M people", "group": "Impact Intelligence", "to": "/intelligence", "keywords": "communities empowered" }
+    { "id": "kh-article-mycorrhizal",  "type": "Article",  "title": "Integrating Mycorrhizal Networks in Regenerative Agriculture", "group": "Knowledge Hub", "to": "/knowledge", "keywords": "mycorrhizal soil biology agriculture research paper nature" },
+    { "id": "kh-case-kenya",           "type": "Case",     "title": "Restoring 10,000 Hectares of Degraded Land in Kenya", "group": "Knowledge Hub", "to": "/knowledge", "keywords": "restoration kenya degraded land case study" },
+    { "id": "kh-dataset-soc",          "type": "Dataset",  "title": "Global Soil Organic Carbon Dataset v2.1", "group": "Knowledge Hub", "to": "/knowledge", "keywords": "soil carbon dataset fao" },
+    { "id": "kh-practice-communities", "type": "Practice", "title": "5 Principles for Building Regenerative Communities", "group": "Knowledge Hub", "to": "/knowledge", "keywords": "communities principles best practice" },
+    { "id": "kh-topic-blue-carbon",    "type": "Topic",    "title": "Blue Carbon", "group": "Knowledge Hub", "to": "/knowledge", "keywords": "trending oceans blue carbon" },
+    { "id": "kh-topic-soil-health",    "type": "Topic",    "title": "Soil Health", "group": "Knowledge Hub", "to": "/knowledge", "keywords": "trending soil regeneration" },
+    { "id": "ii-insight-amazon",       "type": "Insight",  "title": "Amazon Reforestation Impact Surging",  "group": "Impact Intelligence", "to": "/intelligence", "keywords": "forest guardian ai insight reforestation amazon carbon" },
+    { "id": "ii-insight-ocean",        "type": "Insight",  "title": "Ocean Health Improvement Detected",    "group": "Impact Intelligence", "to": "/intelligence", "keywords": "oceanus coral reef restoration" },
+    { "id": "ii-insight-soil",         "type": "Insight",  "title": "Soil Regeneration Opportunity",        "group": "Impact Intelligence", "to": "/intelligence", "keywords": "terralens degraded land" },
+    { "id": "ii-insight-invest",       "type": "Insight",  "title": "Impact Investment Trend",              "group": "Impact Intelligence", "to": "/intelligence", "keywords": "capital flow roi regenerative agriculture" },
+    { "id": "ii-kpi-carbon",           "type": "KPI",      "title": "Carbon Sequestration — 1.42 Gt",       "group": "Impact Intelligence", "to": "/intelligence", "keywords": "kpi carbon sequestration co2" },
+    { "id": "ii-kpi-biodiversity",     "type": "KPI",      "title": "Biodiversity Impact — 8,721 species",  "group": "Impact Intelligence", "to": "/intelligence", "keywords": "biodiversity species habitats" },
+    { "id": "ii-kpi-water",            "type": "KPI",      "title": "Water Restored — 4.28B m³",            "group": "Impact Intelligence", "to": "/intelligence", "keywords": "water lakes rivers" },
+    { "id": "ii-kpi-communities",      "type": "KPI",      "title": "Communities Empowered — 12.6M people", "group": "Impact Intelligence", "to": "/intelligence", "keywords": "communities empowered" }
   ],
   "governance": {
     "summary": [
