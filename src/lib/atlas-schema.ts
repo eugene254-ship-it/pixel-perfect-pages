@@ -7,8 +7,10 @@ const notif = z.object({
   time: z.string(), unread: z.boolean(), to: z.string(),
 });
 const search = z.object({
+  id: z.string().optional(),
   type: z.string(), title: z.string(), group: z.string(),
   to: z.string(), keywords: z.string(),
+  anchor: z.string().optional(),
 });
 
 // Loose passthrough for the per-page config so authors can extend freely.

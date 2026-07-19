@@ -1,10 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { zodValidator, fallback } from "@tanstack/zod-adapter";
+import { z } from "zod";
 import { Brain, Sparkles, TrendingUp, Waves, Sprout, Coins, ChevronRight, Leaf, TreePine, Heart, Droplet, Wind, Activity, RefreshCw, Maximize2 } from "lucide-react";
 import { AppShell } from "@/components/atlas/AppShell";
 import { Globe, HexIcon, Ring, Sparkline } from "@/components/atlas/primitives";
+import { Highlight, useScrollToMatch } from "@/lib/search-highlight";
+
+const searchSchema = z.object({
+  q: fallback(z.string(), "").default(""),
+  match: fallback(z.string(), "").default(""),
+});
 
 export const Route = createFileRoute("/intelligence")({
   head: () => ({ meta: [{ title: "Impact Intelligence — Atlas Sanctum" }, { name: "description", content: "Real-time planetary regeneration overview and AI insights." }] }),
+  validateSearch: zodValidator(searchSchema),
   component: Intelligence,
 });
 
@@ -21,24 +30,26 @@ const scores = [
 ];
 
 const insights = [
-  { t: "Amazon Reforestation Impact Surging", m: "AI Model: Forest Guardian v2.1", d: "Tree planting in the Amazon has increased carbon sequestration by 23% in the last 30 days.", conf: 94 },
-  { t: "Ocean Health Improvement Detected", m: "AI Model: Oceanus v3.4", d: "Coral reef restoration projects are showing 18% higher survival rates than predicted.", conf: 91 },
-  { t: "Soil Regeneration Opportunity", m: "AI Model: TerraLens v1.8", d: "7.3M hectares of degraded land identified for high-impact restoration.", conf: 89 },
-  { t: "Impact Investment Trend", m: "AI Model: Capital Flow v2.7", d: "Regenerative agriculture investments are projected to yield 2.4x ROI over the next 5 years.", conf: 88 },
+  { id: "ii-insight-amazon", t: "Amazon Reforestation Impact Surging", m: "AI Model: Forest Guardian v2.1", d: "Tree planting in the Amazon has increased carbon sequestration by 23% in the last 30 days.", conf: 94 },
+  { id: "ii-insight-ocean",  t: "Ocean Health Improvement Detected",    m: "AI Model: Oceanus v3.4",         d: "Coral reef restoration projects are showing 18% higher survival rates than predicted.",   conf: 91 },
+  { id: "ii-insight-soil",   t: "Soil Regeneration Opportunity",        m: "AI Model: TerraLens v1.8",       d: "7.3M hectares of degraded land identified for high-impact restoration.",                    conf: 89 },
+  { id: "ii-insight-invest", t: "Impact Investment Trend",              m: "AI Model: Capital Flow v2.7",    d: "Regenerative agriculture investments are projected to yield 2.4x ROI over the next 5 years.", conf: 88 },
 ];
 
 const kpis = [
-  { l: "CARBON SEQUESTRATION", v: "1.42 Gt", sub: "CO₂e", ch: "+15.6%", tot: "Total Sequestered", tv: "12.8 Gt CO₂e", pr: "Projects", pv: "1,234", c: "#4ade80" },
-  { l: "BIODIVERSITY IMPACT", v: "8,721", sub: "Species Positively Impacted", ch: "+342", tot: "Habitats Restored", tv: "2.3M ha", pr: "Projects", pv: "987", c: "#22d3ee" },
-  { l: "WATER RESTORED", v: "4.28B m³", sub: "Water Restored", ch: "+8.7%", tot: "Lakes Restored", tv: "1,245", pr: "Rivers Protected", pv: "3,672 km", c: "#38bdf8" },
-  { l: "COMMUNITIES EMPOWERED", v: "12.6M", sub: "People Empowered", ch: "+18.3%", tot: "Communities", tv: "8,432", pr: "Countries", pv: "143", c: "#c084fc" },
-  { l: "REGENERATIVE ECONOMY", v: "$1.26T", sub: "Regenerative Economy Value", ch: "+21.4%", tot: "Businesses", tv: "6,782", pr: "Jobs Created", pv: "3.2M", c: "#facc15" },
+  { id: "ii-kpi-carbon",       l: "CARBON SEQUESTRATION", v: "1.42 Gt", sub: "CO₂e", ch: "+15.6%", tot: "Total Sequestered", tv: "12.8 Gt CO₂e", pr: "Projects", pv: "1,234", c: "#4ade80" },
+  { id: "ii-kpi-biodiversity", l: "BIODIVERSITY IMPACT", v: "8,721", sub: "Species Positively Impacted", ch: "+342", tot: "Habitats Restored", tv: "2.3M ha", pr: "Projects", pv: "987", c: "#22d3ee" },
+  { id: "ii-kpi-water",        l: "WATER RESTORED", v: "4.28B m³", sub: "Water Restored", ch: "+8.7%", tot: "Lakes Restored", tv: "1,245", pr: "Rivers Protected", pv: "3,672 km", c: "#38bdf8" },
+  { id: "ii-kpi-communities",  l: "COMMUNITIES EMPOWERED", v: "12.6M", sub: "People Empowered", ch: "+18.3%", tot: "Communities", tv: "8,432", pr: "Countries", pv: "143", c: "#c084fc" },
+  { id: "ii-kpi-regen-econ",   l: "REGENERATIVE ECONOMY", v: "$1.26T", sub: "Regenerative Economy Value", ch: "+21.4%", tot: "Businesses", tv: "6,782", pr: "Jobs Created", pv: "3.2M", c: "#facc15" },
 ];
 
 function Intelligence() {
+  const { q, match } = Route.useSearch();
+  useScrollToMatch(match || undefined);
   return (
     <AppShell active="Impact Intelligence">
-      <div className="p-6 space-y-6">
+      <div className="p-6 space-y-6" data-testid="page-ready">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-[24px] font-semibold text-white tracking-tight flex items-center gap-3"><HexIcon color="#4ade80" size={36}><Brain className="w-4 h-4"/></HexIcon>IMPACT INTELLIGENCE</h1>
@@ -97,8 +108,8 @@ function Intelligence() {
             <div className="text-[13px] font-semibold text-white mb-3">AI INSIGHTS</div>
             <div className="space-y-3">
               {insights.map(i=>(
-                <div key={i.t} className="rounded-lg border border-white/10 bg-white/[0.02] p-3">
-                  <div className="text-[12px] font-semibold text-white">{i.t}</div>
+                <div id={i.id} key={i.t} data-searchable className="rounded-lg border border-white/10 bg-white/[0.02] p-3">
+                  <div className="text-[12px] font-semibold text-white"><Highlight text={i.t} query={q}/></div>
                   <div className="text-[9px] text-cyan-300">{i.m}</div>
                   <div className="text-[10px] text-slate-400 mt-1 leading-tight">{i.d}</div>
                   <div className="flex justify-between mt-2 text-[10px]"><span className="text-slate-500">Confidence: <span className="text-emerald-400">{i.conf}%</span></span><a className="text-cyan-300">View Insight →</a></div>
@@ -113,8 +124,8 @@ function Intelligence() {
           <div className="text-[11px] tracking-[0.2em] text-slate-400 mb-4">IMPACT AT A GLANCE</div>
           <div className="grid grid-cols-5 gap-4">
             {kpis.map((k,i)=>(
-              <div key={k.l} className="rounded-lg border border-white/10 bg-white/[0.02] p-4">
-                <div className="text-[9px] tracking-[0.15em] text-slate-500">{k.l}</div>
+              <div id={k.id} key={k.l} data-searchable className="rounded-lg border border-white/10 bg-white/[0.02] p-4">
+                <div className="text-[9px] tracking-[0.15em] text-slate-500"><Highlight text={k.l} query={q}/></div>
                 <div className="text-white font-semibold text-[22px] mt-1">{k.v}</div>
                 <div className="text-[10px] text-slate-400">{k.sub}</div>
                 <div className="text-[10px] mt-1"><span style={{color:k.c}}>↑ {k.ch}</span> <span className="text-slate-500">vs last 30 days</span></div>

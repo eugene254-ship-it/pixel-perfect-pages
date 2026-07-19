@@ -25,7 +25,7 @@ function Developers() {
   const d = atlas.developers;
   return (
     <AppShell active="Developers">
-      <div className="p-6 space-y-6">
+      <div className="p-6 space-y-6" data-testid="page-ready">
         <div className="flex justify-between items-start">
           <div>
             <h1 className="text-[24px] font-semibold text-white tracking-tight">DEVELOPER PLATFORM</h1>

@@ -67,7 +67,7 @@ const suggested = [
 function Community() {
   return (
     <AppShell active="Community">
-      <div className="p-6 space-y-6">
+      <div className="p-6 space-y-6" data-testid="page-ready">
         <div className="flex justify-between items-center">
           <div>
             <h1 className="text-[24px] font-semibold text-white tracking-tight">COMMUNITY HUB</h1>

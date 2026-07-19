@@ -70,7 +70,7 @@ const quick = [
 function Index() {
   return (
     <AppShell active="Home">
-      <div className="grid grid-cols-[1fr_360px] gap-6 p-8">
+      <div data-testid="page-ready" className="grid grid-cols-[1fr_360px] gap-6 p-8">
         <div className="space-y-6 min-w-0">
           <section className="relative overflow-hidden">
             <div className="grid grid-cols-[1fr_auto] gap-6 items-center">

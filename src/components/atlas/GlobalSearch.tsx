@@ -3,9 +3,10 @@ import { Search as SearchIcon } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
 import atlas from "@/content/atlas.json";
 import { classifySearchType } from "@/lib/atlas-schema";
+import { track } from "@/lib/analytics";
 
 type SearchItem = {
-  type: string; title: string; group: string; to: string; keywords: string;
+  id?: string; type: string; title: string; group: string; to: string; keywords: string; anchor?: string;
 };
 type Ranked = SearchItem & { score: number; kind: "article" | "entity" };
 
@@ -42,6 +43,7 @@ export function GlobalSearch() {
   const [active, setActive] = useState(0);
   const wrapRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const lastQueryRef = useRef<string>("");
 
   const ranked = useMemo<Ranked[]>(() => {
     const query = q.trim().toLowerCase();
@@ -75,6 +77,19 @@ export function GlobalSearch() {
 
   useEffect(() => { setActive(0); }, [q, filter]);
 
+  // Debounced query analytics: fires once per settled query.
+  useEffect(() => {
+    const query = q.trim();
+    if (!query) return;
+    const t = window.setTimeout(() => {
+      if (lastQueryRef.current === query) return;
+      lastQueryRef.current = query;
+      track("search_query", { q: query, filter, resultCount: flat.length });
+      if (flat.length === 0) track("search_zero_results", { q: query, filter });
+    }, 400);
+    return () => window.clearTimeout(t);
+  }, [q, filter, flat.length]);
+
   useEffect(() => {
     const onDoc = (e: MouseEvent) => {
       if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) setOpen(false);
@@ -94,25 +109,56 @@ export function GlobalSearch() {
     };
   }, []);
 
-  const commit = (i: number) => {
+  const commit = (i: number, source: "keyboard" | "mouse" = "keyboard") => {
     const hit = flat[i];
     if (!hit) return;
-    setOpen(false); setQ("");
-    navigate({ to: hit.to });
+    const query = q.trim();
+    track("search_result_open", {
+      id: hit.id ?? hit.title,
+      kind: hit.kind,
+      route: hit.to,
+      source,
+      q: query,
+    });
+    setOpen(false);
+    setQ("");
+    // Deep-link: forward the query + matched id so the target route can
+    // highlight and scroll to the exact entity/article.
+    navigate({
+      to: hit.to,
+      search: (prev: Record<string, unknown>) => ({
+        ...prev,
+        q: query || undefined,
+        match: hit.id,
+      }),
+      hash: hit.anchor,
+    });
   };
 
   const onKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "ArrowDown") { e.preventDefault(); setActive((a) => Math.min(flat.length - 1, a + 1)); }
-    else if (e.key === "ArrowUp") { e.preventDefault(); setActive((a) => Math.max(0, a - 1)); }
-    else if (e.key === "Enter") { e.preventDefault(); commit(active); }
-    else if (e.key === "Escape") { setOpen(false); }
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActive((a) => Math.min(flat.length - 1, a + 1));
+      track("search_keyboard_nav", { key: "ArrowDown" });
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActive((a) => Math.max(0, a - 1));
+      track("search_keyboard_nav", { key: "ArrowUp" });
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      track("search_keyboard_nav", { key: "Enter", index: active });
+      commit(active, "keyboard");
+    } else if (e.key === "Escape") {
+      track("search_keyboard_nav", { key: "Escape" });
+      setOpen(false);
+    }
   };
 
   const renderRow = (r: Ranked, idx: number) => (
     <button
       key={r.title + r.to}
       onMouseEnter={() => setActive(idx)}
-      onClick={() => commit(idx)}
+      onClick={() => commit(idx, "mouse")}
       className={`w-full text-left px-4 py-2.5 flex items-center gap-3 border-b border-white/5 last:border-b-0 ${
         idx === active ? "bg-cyan-400/10" : "hover:bg-white/5"
       }`}
@@ -148,7 +194,10 @@ export function GlobalSearch() {
             {FILTERS.map((f) => (
               <button
                 key={f.id}
-                onClick={() => setFilter(f.id)}
+                onClick={() => {
+                  setFilter(f.id);
+                  track("search_filter_change", { filter: f.id, q: q.trim() });
+                }}
                 className={`shrink-0 h-6 px-2.5 rounded-full text-[10px] tracking-wide border ${
                   filter === f.id
                     ? "bg-cyan-400/15 border-cyan-400/40 text-cyan-200"
