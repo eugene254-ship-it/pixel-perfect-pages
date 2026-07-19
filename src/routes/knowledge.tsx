@@ -1,10 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { zodValidator, fallback } from "@tanstack/zod-adapter";
+import { z } from "zod";
 import { BookOpen, Search, Sprout, Waves, Wind, Heart, Zap, Leaf, Droplet, Recycle, FileText, Database, Users, ChevronRight, Download, Eye, MessageCircle } from "lucide-react";
 import { AppShell } from "@/components/atlas/AppShell";
 import { Globe, HexIcon, Sparkline } from "@/components/atlas/primitives";
+import { Highlight, useScrollToMatch } from "@/lib/search-highlight";
+
+const searchSchema = z.object({
+  q: fallback(z.string(), "").default(""),
+  match: fallback(z.string(), "").default(""),
+});
 
 export const Route = createFileRoute("/knowledge")({
   head: () => ({ meta: [{ title: "Knowledge Hub — Atlas Sanctum" }, { name: "description", content: "Humanity's regenerative knowledge network — research, datasets, and insights." }] }),
+  validateSearch: zodValidator(searchSchema),
   component: Knowledge,
 });
 
@@ -16,30 +25,30 @@ const stats = [
 ];
 
 const topics = [
-  { i: BookOpen, l: "All Topics", s: "Explore all", c: "#22d3ee" },
-  { i: Sprout, l: "Agriculture", s: "128K Items", c: "#4ade80" },
-  { i: Waves, l: "Oceans", s: "96K Items", c: "#22d3ee" },
-  { i: Wind, l: "Climate", s: "210K Items", c: "#38bdf8" },
-  { i: Heart, l: "Health", s: "75K Items", c: "#c084fc" },
-  { i: Zap, l: "Energy", s: "88K Items", c: "#facc15" },
-  { i: Leaf, l: "Biodiversity", s: "134K Items", c: "#a3e635" },
-  { i: Droplet, l: "Water", s: "65K Items", c: "#38bdf8" },
-  { i: Recycle, l: "Circular Economy", s: "94K Items", c: "#4ade80" },
+  { id: "kh-topic-all",         i: BookOpen, l: "All Topics", s: "Explore all", c: "#22d3ee" },
+  { id: "kh-topic-agriculture", i: Sprout, l: "Agriculture", s: "128K Items", c: "#4ade80" },
+  { id: "kh-topic-oceans",      i: Waves, l: "Oceans", s: "96K Items", c: "#22d3ee" },
+  { id: "kh-topic-climate",     i: Wind, l: "Climate", s: "210K Items", c: "#38bdf8" },
+  { id: "kh-topic-health",      i: Heart, l: "Health", s: "75K Items", c: "#c084fc" },
+  { id: "kh-topic-energy",      i: Zap, l: "Energy", s: "88K Items", c: "#facc15" },
+  { id: "kh-topic-biodiversity",i: Leaf, l: "Biodiversity", s: "134K Items", c: "#a3e635" },
+  { id: "kh-topic-water",       i: Droplet, l: "Water", s: "65K Items", c: "#38bdf8" },
+  { id: "kh-topic-circular",    i: Recycle, l: "Circular Economy", s: "94K Items", c: "#4ade80" },
 ];
 
 const featured = [
-  { tag: "RESEARCH PAPER", t: "Integrating Mycorrhizal Networks in Regenerative Agriculture", src: "Published in Nature Sustainability", date: "May 10, 2025", views: "12.4K", dl: "1.2K", cm: "356", img: "linear-gradient(135deg,#052e16,#166534)" },
-  { tag: "CASE STUDY", t: "Restoring 10,000 Hectares of Degraded Land in Kenya", src: "By World Renew & Partners", date: "Apr 28, 2025", views: "8.7K", dl: "932", cm: "204", img: "linear-gradient(135deg,#78350f,#166534)" },
-  { tag: "DATASET", t: "Global Soil Organic Carbon Dataset v2.1", src: "FAO & Partners", date: "May 5, 2025", views: "19.3K", dl: "2.1K", cm: "634", img: "linear-gradient(135deg,#082f49,#166534)" },
-  { tag: "BEST PRACTICE", t: "5 Principles for Building Regenerative Communities", src: "By EcoLogic Institute", date: "Apr 20, 2025", views: "6.2K", dl: "721", cm: "180", img: "linear-gradient(135deg,#4a044e,#831843)" },
+  { id: "kh-article-mycorrhizal",  tag: "RESEARCH PAPER", t: "Integrating Mycorrhizal Networks in Regenerative Agriculture", src: "Published in Nature Sustainability", date: "May 10, 2025", views: "12.4K", dl: "1.2K", cm: "356", img: "linear-gradient(135deg,#052e16,#166534)" },
+  { id: "kh-case-kenya",           tag: "CASE STUDY",     t: "Restoring 10,000 Hectares of Degraded Land in Kenya",         src: "By World Renew & Partners",         date: "Apr 28, 2025", views: "8.7K",  dl: "932", cm: "204", img: "linear-gradient(135deg,#78350f,#166534)" },
+  { id: "kh-dataset-soc",          tag: "DATASET",        t: "Global Soil Organic Carbon Dataset v2.1",                     src: "FAO & Partners",                    date: "May 5, 2025",  views: "19.3K", dl: "2.1K", cm: "634", img: "linear-gradient(135deg,#082f49,#166534)" },
+  { id: "kh-practice-communities", tag: "BEST PRACTICE",  t: "5 Principles for Building Regenerative Communities",          src: "By EcoLogic Institute",             date: "Apr 20, 2025", views: "6.2K",  dl: "721", cm: "180", img: "linear-gradient(135deg,#4a044e,#831843)" },
 ];
 
 const trending = [
-  { n: "Regenerative Agriculture", ch: "+32%" },
-  { n: "Blue Carbon", ch: "+28%" },
-  { n: "Soil Health", ch: "+21%" },
-  { n: "Biodiversity Credits", ch: "+18%" },
-  { n: "Climate Resilience", ch: "+16%" },
+  { id: "kh-trend-regen-ag",     n: "Regenerative Agriculture", ch: "+32%" },
+  { id: "kh-topic-blue-carbon",  n: "Blue Carbon", ch: "+28%" },
+  { id: "kh-topic-soil-health",  n: "Soil Health", ch: "+21%" },
+  { id: "kh-trend-bio-credits",  n: "Biodiversity Credits", ch: "+18%" },
+  { id: "kh-trend-climate-res",  n: "Climate Resilience", ch: "+16%" },
 ];
 
 const collabs = [
@@ -49,9 +58,11 @@ const collabs = [
 ];
 
 function Knowledge() {
+  const { q, match } = Route.useSearch();
+  useScrollToMatch(match || undefined);
   return (
     <AppShell active="Knowledge Hub">
-      <div className="p-6 space-y-6">
+      <div className="p-6 space-y-6" data-testid="page-ready">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-[24px] font-semibold text-white tracking-tight">KNOWLEDGE HUB</h1>
@@ -104,9 +115,9 @@ function Knowledge() {
 
             <div className="grid grid-cols-9 gap-2">
               {topics.map(t=>(
-                <button key={t.l} className="rounded-lg border border-white/10 bg-white/[0.03] p-3 text-center hover:bg-white/5">
+                <button id={t.id} key={t.l} data-searchable className="rounded-lg border border-white/10 bg-white/[0.03] p-3 text-center hover:bg-white/5">
                   <HexIcon color={t.c} size={30}><t.i className="w-3.5 h-3.5"/></HexIcon>
-                  <div className="text-[10px] text-white mt-1">{t.l}</div>
+                  <div className="text-[10px] text-white mt-1"><Highlight text={t.l} query={q}/></div>
                   <div className="text-[9px] text-slate-500">{t.s}</div>
                 </button>
               ))}
@@ -119,12 +130,12 @@ function Knowledge() {
               </div>
               <div className="grid grid-cols-4 gap-3">
                 {featured.map(f=>(
-                  <div key={f.t} className="rounded-lg overflow-hidden border border-white/10 bg-white/[0.03]">
+                  <div id={f.id} key={f.t} data-searchable className="rounded-lg overflow-hidden border border-white/10 bg-white/[0.03]">
                     <div className="h-32 relative" style={{background:f.img}}>
                       <span className="absolute top-2 left-2 text-[9px] tracking-widest text-emerald-300 border border-emerald-400/30 bg-emerald-400/10 rounded px-1.5 py-0.5">{f.tag}</span>
                     </div>
                     <div className="p-3">
-                      <div className="text-[12px] font-semibold text-white leading-tight">{f.t}</div>
+                      <div className="text-[12px] font-semibold text-white leading-tight"><Highlight text={f.t} query={q}/></div>
                       <div className="text-[10px] text-slate-500 mt-1">{f.src}</div>
                       <div className="text-[10px] text-slate-500">{f.date}</div>
                       <div className="mt-2 flex gap-3 text-[10px] text-slate-400">
@@ -184,8 +195,8 @@ function Knowledge() {
               <div className="text-[13px] font-semibold text-white mb-3">TRENDING TOPICS</div>
               <div className="space-y-2">
                 {trending.map((t,i)=>(
-                  <div key={t.n} className="flex justify-between text-[11px]">
-                    <span className="text-slate-300">{i+1}. {t.n}</span>
+                  <div id={t.id} key={t.n} data-searchable className="flex justify-between text-[11px]">
+                    <span className="text-slate-300">{i+1}. <Highlight text={t.n} query={q}/></span>
                     <span className="text-emerald-400">↑ {t.ch}</span>
                   </div>
                 ))}
