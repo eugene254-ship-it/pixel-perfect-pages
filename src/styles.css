@@ -142,3 +142,117 @@
     color: var(--color-foreground);
   }
 }
+
+/* ============================================================
+ * Atlas design tokens
+ *
+ * A single source of truth for spacing, typography, breakpoints,
+ * radii, shadows and motion. Every route consumes these through the
+ * @utility helpers below so all 12 pages scale identically across
+ * viewports. Do not hand-pick sizes in page code — extend the scale
+ * here instead.
+ * ============================================================ */
+@theme {
+  /* Spacing scale — 4px base, extended smoothly at the large end. */
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Typography scale — paired with sensible leading. */
+  --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.9375rem;
+  --text-lg: 1.0625rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --leading-tight: 1.15;
+  --leading-snug: 1.3;
+  --leading-normal: 1.5;
+
+  /* Fonts — actual @font-face loading happens via <link> in __root.tsx. */
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "JetBrains Mono", monospace;
+
+  /* Breakpoints — kept aligned with Tailwind defaults so sm:/md:/lg: match. */
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 96rem;
+
+  /* Motion */
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --duration-slow: 320ms;
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Shadow */
+  --shadow-panel: 0 20px 60px -20px rgba(0, 0, 0, 0.55);
+}
+
+/* Semantic typography utilities used across all 12 pages. */
+@utility text-display-1 {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+@utility text-display-2 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  line-height: var(--leading-tight);
+  font-weight: 600;
+}
+@utility text-body {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+@utility text-caption {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  line-height: var(--leading-snug);
+  color: color-mix(in oklch, var(--color-muted-foreground) 90%, transparent);
+}
+
+/* Skeleton primitives — token-driven and theme-aware. */
+@utility skeleton-block {
+  border-radius: var(--radius-md);
+  background: color-mix(in oklch, var(--color-card) 92%, white 8%);
+}
+@utility skeleton-card {
+  border-radius: var(--radius-lg);
+  background: color-mix(in oklch, var(--color-card) 92%, white 6%);
+  border: 1px solid color-mix(in oklch, var(--color-border) 60%, transparent);
+}
+
+/* Global search deep-link highlighting. */
+mark.atlas-highlight {
+  background: color-mix(in oklch, var(--color-primary) 25%, transparent);
+  color: inherit;
+  border-radius: 2px;
+  padding: 0 2px;
+}
+[data-match="true"] {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+  border-radius: var(--radius-md);
+  animation: atlas-match-pulse var(--duration-slow) var(--ease-standard) 2 alternate;
+}
+@keyframes atlas-match-pulse {
+  from { box-shadow: 0 0 0 0 color-mix(in oklch, var(--color-primary) 40%, transparent); }
+  to   { box-shadow: 0 0 0 6px color-mix(in oklch, var(--color-primary) 0%, transparent); }
+}
