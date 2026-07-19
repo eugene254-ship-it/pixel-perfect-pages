@@ -1,19 +1,19 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   Home, Target, Sprout, Repeat, Brain, BookOpen, FlaskConical, Wallet,
-  Users, Landmark, BarChart3, Code2, Settings, Search, Globe2, Bell, Mail,
+  Users, Landmark, BarChart3, Code2, Settings, Globe2, Bell, Mail,
   ChevronDown, Menu, X, Circle,
 } from "lucide-react";
 import { Globe, HexIcon } from "./primitives";
 import atlas from "@/content/atlas.json";
+import { GlobalSearch } from "./GlobalSearch";
+import { ContentValidationBanner } from "./ContentValidationBanner";
 
 const ICONS: Record<string, any> = {
   Home, Target, Sprout, Repeat, Brain, BookOpen, FlaskConical, Wallet,
   Users, Landmark, BarChart3, Code2, Settings,
 };
-
-type SearchItem = { type: string; title: string; group: string; to: string; keywords: string };
 
 function SidebarInner({ active, onNavigate }: { active: string; onNavigate?: () => void }) {
   return (
@@ -74,26 +74,14 @@ export function AppShell({ active, children }: { active: string; children: React
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [notifOpen, setNotifOpen] = useState(false);
-  const [search, setSearch] = useState("");
-  const [searchOpen, setSearchOpen] = useState(false);
   const [readIds, setReadIds] = useState<Set<string>>(new Set());
   const notifRef = useRef<HTMLDivElement>(null);
-  const searchRef = useRef<HTMLDivElement>(null);
 
   const unread = atlas.notifications.filter((n) => n.unread && !readIds.has(n.id)).length;
-
-  const results = useMemo<SearchItem[]>(() => {
-    const q = search.trim().toLowerCase();
-    if (!q) return [];
-    return (atlas.searchIndex as SearchItem[])
-      .filter((it) => (it.title + " " + it.keywords + " " + it.group).toLowerCase().includes(q))
-      .slice(0, 8);
-  }, [search]);
 
   useEffect(() => {
     const onDoc = (e: MouseEvent) => {
       if (notifRef.current && !notifRef.current.contains(e.target as Node)) setNotifOpen(false);
-      if (searchRef.current && !searchRef.current.contains(e.target as Node)) setSearchOpen(false);
     };
     document.addEventListener("mousedown", onDoc);
     return () => document.removeEventListener("mousedown", onDoc);
@@ -140,40 +128,7 @@ export function AppShell({ active, children }: { active: string; children: React
               <Menu className="w-4 h-4" />
             </button>
 
-            <div className="flex-1 max-w-xl relative" ref={searchRef}>
-              <Search className="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" />
-              <input
-                value={search}
-                onChange={(e) => { setSearch(e.target.value); setSearchOpen(true); }}
-                onFocus={() => setSearchOpen(true)}
-                placeholder="Search across systems, projects, assets, knowledge..."
-                className="w-full h-10 rounded-full bg-white/5 border border-white/10 pl-11 pr-4 text-[13px] text-slate-300 placeholder:text-slate-500 outline-none focus:border-cyan-400/40"
-              />
-              {searchOpen && search.trim() && (
-                <div className="absolute left-0 right-0 top-12 z-40 rounded-xl border border-white/10 bg-[#0c1830] shadow-2xl overflow-hidden">
-                  {results.length === 0 ? (
-                    <div className="px-4 py-3 text-[12px] text-slate-500">No matches</div>
-                  ) : (
-                    results.map((r) => (
-                      <button
-                        key={r.title}
-                        onClick={() => {
-                          setSearchOpen(false); setSearch("");
-                          navigate({ to: r.to });
-                        }}
-                        className="w-full text-left px-4 py-2.5 hover:bg-white/5 flex items-center gap-3 border-b border-white/5 last:border-b-0"
-                      >
-                        <span className="text-[9px] tracking-widest text-cyan-300 border border-cyan-400/30 rounded px-1.5 py-0.5">{r.type}</span>
-                        <div className="min-w-0 flex-1">
-                          <div className="text-[12px] text-white truncate">{r.title}</div>
-                          <div className="text-[10px] text-slate-500">{r.group}</div>
-                        </div>
-                      </button>
-                    ))
-                  )}
-                </div>
-              )}
-            </div>
+            <GlobalSearch />
 
             <div className="ml-auto flex items-center gap-2 md:gap-3">
               <button className="hidden md:flex items-center gap-2 h-9 px-3 rounded-full bg-white/5 border border-white/10 text-[13px] text-slate-300">
@@ -247,6 +202,7 @@ export function AppShell({ active, children }: { active: string; children: React
             </div>
           </div>
 
+          <ContentValidationBanner />
           {children}
         </main>
       </div>
