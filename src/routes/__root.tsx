@@ -77,12 +77,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Atlas Sanctum — Regenerative Value Platform" },
-      { name: "description", content: "Atlas Sanctum unites ecosystems, knowledge, capital and innovation to regenerate our planet and humanity." },
-      { property: "og:title", content: "Atlas Sanctum — Regenerative Value Platform" },
-      { property: "og:description", content: "Building a regenerative future for all life." },
+      { title: "Atlas Sanctum" },
+      { name: "description", content: "Regenerative value platform — mission overview and live planetary impact." },
+      { property: "og:title", content: "Atlas Sanctum" },
+      { property: "og:description", content: "Regenerative value platform — mission overview and live planetary impact." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Atlas Sanctum" },
+      { name: "twitter:description", content: "Regenerative value platform — mission overview and live planetary impact." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/c98e873c-f09c-4ad0-8167-ce973cc28260" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/c98e873c-f09c-4ad0-8167-ce973cc28260" },
     ],
     links: [
       {

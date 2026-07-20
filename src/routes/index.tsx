@@ -10,7 +10,7 @@ import { Globe, HexIcon, Sparkline } from "@/components/atlas/primitives";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Home — Atlas Sanctum" },
+      { title: "Atlas Sanctum" },
       { name: "description", content: "Regenerative value platform — mission overview and live planetary impact." },
     ],
   }),
