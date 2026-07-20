@@ -1,7 +1,15 @@
 import { z } from "zod";
 import raw from "@/content/atlas.json";
 
-const navItem = z.object({ icon: z.string(), label: z.string(), to: z.string() });
+type NavItemT = { icon: string; label: string; to: string; children?: NavItemT[] };
+const navItem: z.ZodType<NavItemT> = z.lazy(() =>
+  z.object({
+    icon: z.string(),
+    label: z.string(),
+    to: z.string(),
+    children: z.array(navItem).optional(),
+  }),
+);
 const notif = z.object({
   id: z.string(), title: z.string(), desc: z.string(),
   time: z.string(), unread: z.boolean(), to: z.string(),

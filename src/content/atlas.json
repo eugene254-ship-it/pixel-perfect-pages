@@ -1,7 +1,15 @@
 {
   "nav": [
     { "icon": "Home", "label": "Home", "to": "/" },
-    { "icon": "Target", "label": "Mission Control", "to": "/mission-control" },
+    { "icon": "Target", "label": "Mission Control", "to": "/mission-control",
+      "children": [
+        { "icon": "LayoutDashboard", "label": "Mission Overview", "to": "/mission-control" },
+        { "icon": "Map",             "label": "Global Map",       "to": "/mission-control/global-map" },
+        { "icon": "Gauge",           "label": "Impact Dashboard", "to": "/mission-control/impact-dashboard" },
+        { "icon": "HeartPulse",      "label": "System Health",    "to": "/mission-control/system-health" },
+        { "icon": "BellRing",        "label": "Alerts & Events",  "to": "/mission-control/alerts" }
+      ]
+    },
     { "icon": "Sprout", "label": "Ecosystems", "to": "/ecosystems" },
     { "icon": "Repeat", "label": "Regenerative Value Exchange", "to": "/exchange" },
     { "icon": "Brain", "label": "Impact Intelligence", "to": "/intelligence" },
