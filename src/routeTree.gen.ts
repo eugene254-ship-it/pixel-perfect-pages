@@ -22,6 +22,10 @@ import { Route as DevelopersRouteImport } from './routes/developers'
 import { Route as CommunityRouteImport } from './routes/community'
 import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MissionControlSystemHealthRouteImport } from './routes/mission-control.system-health'
+import { Route as MissionControlImpactDashboardRouteImport } from './routes/mission-control.impact-dashboard'
+import { Route as MissionControlGlobalMapRouteImport } from './routes/mission-control.global-map'
+import { Route as MissionControlAlertsRouteImport } from './routes/mission-control.alerts'
 
 const SettingsRoute = SettingsRouteImport.update({
   id: '/settings',
@@ -88,6 +92,28 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MissionControlSystemHealthRoute =
+  MissionControlSystemHealthRouteImport.update({
+    id: '/system-health',
+    path: '/system-health',
+    getParentRoute: () => MissionControlRoute,
+  } as any)
+const MissionControlImpactDashboardRoute =
+  MissionControlImpactDashboardRouteImport.update({
+    id: '/impact-dashboard',
+    path: '/impact-dashboard',
+    getParentRoute: () => MissionControlRoute,
+  } as any)
+const MissionControlGlobalMapRoute = MissionControlGlobalMapRouteImport.update({
+  id: '/global-map',
+  path: '/global-map',
+  getParentRoute: () => MissionControlRoute,
+} as any)
+const MissionControlAlertsRoute = MissionControlAlertsRouteImport.update({
+  id: '/alerts',
+  path: '/alerts',
+  getParentRoute: () => MissionControlRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -101,8 +127,12 @@ export interface FileRoutesByFullPath {
   '/investment': typeof InvestmentRoute
   '/knowledge': typeof KnowledgeRoute
   '/labs': typeof LabsRoute
-  '/mission-control': typeof MissionControlRoute
+  '/mission-control': typeof MissionControlRouteWithChildren
   '/settings': typeof SettingsRoute
+  '/mission-control/alerts': typeof MissionControlAlertsRoute
+  '/mission-control/global-map': typeof MissionControlGlobalMapRoute
+  '/mission-control/impact-dashboard': typeof MissionControlImpactDashboardRoute
+  '/mission-control/system-health': typeof MissionControlSystemHealthRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -116,8 +146,12 @@ export interface FileRoutesByTo {
   '/investment': typeof InvestmentRoute
   '/knowledge': typeof KnowledgeRoute
   '/labs': typeof LabsRoute
-  '/mission-control': typeof MissionControlRoute
+  '/mission-control': typeof MissionControlRouteWithChildren
   '/settings': typeof SettingsRoute
+  '/mission-control/alerts': typeof MissionControlAlertsRoute
+  '/mission-control/global-map': typeof MissionControlGlobalMapRoute
+  '/mission-control/impact-dashboard': typeof MissionControlImpactDashboardRoute
+  '/mission-control/system-health': typeof MissionControlSystemHealthRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -132,8 +166,12 @@ export interface FileRoutesById {
   '/investment': typeof InvestmentRoute
   '/knowledge': typeof KnowledgeRoute
   '/labs': typeof LabsRoute
-  '/mission-control': typeof MissionControlRoute
+  '/mission-control': typeof MissionControlRouteWithChildren
   '/settings': typeof SettingsRoute
+  '/mission-control/alerts': typeof MissionControlAlertsRoute
+  '/mission-control/global-map': typeof MissionControlGlobalMapRoute
+  '/mission-control/impact-dashboard': typeof MissionControlImpactDashboardRoute
+  '/mission-control/system-health': typeof MissionControlSystemHealthRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -151,6 +189,10 @@ export interface FileRouteTypes {
     | '/labs'
     | '/mission-control'
     | '/settings'
+    | '/mission-control/alerts'
+    | '/mission-control/global-map'
+    | '/mission-control/impact-dashboard'
+    | '/mission-control/system-health'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -166,6 +208,10 @@ export interface FileRouteTypes {
     | '/labs'
     | '/mission-control'
     | '/settings'
+    | '/mission-control/alerts'
+    | '/mission-control/global-map'
+    | '/mission-control/impact-dashboard'
+    | '/mission-control/system-health'
   id:
     | '__root__'
     | '/'
@@ -181,6 +227,10 @@ export interface FileRouteTypes {
     | '/labs'
     | '/mission-control'
     | '/settings'
+    | '/mission-control/alerts'
+    | '/mission-control/global-map'
+    | '/mission-control/impact-dashboard'
+    | '/mission-control/system-health'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -195,7 +245,7 @@ export interface RootRouteChildren {
   InvestmentRoute: typeof InvestmentRoute
   KnowledgeRoute: typeof KnowledgeRoute
   LabsRoute: typeof LabsRoute
-  MissionControlRoute: typeof MissionControlRoute
+  MissionControlRoute: typeof MissionControlRouteWithChildren
   SettingsRoute: typeof SettingsRoute
 }
 
@@ -292,8 +342,54 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mission-control/system-health': {
+      id: '/mission-control/system-health'
+      path: '/system-health'
+      fullPath: '/mission-control/system-health'
+      preLoaderRoute: typeof MissionControlSystemHealthRouteImport
+      parentRoute: typeof MissionControlRoute
+    }
+    '/mission-control/impact-dashboard': {
+      id: '/mission-control/impact-dashboard'
+      path: '/impact-dashboard'
+      fullPath: '/mission-control/impact-dashboard'
+      preLoaderRoute: typeof MissionControlImpactDashboardRouteImport
+      parentRoute: typeof MissionControlRoute
+    }
+    '/mission-control/global-map': {
+      id: '/mission-control/global-map'
+      path: '/global-map'
+      fullPath: '/mission-control/global-map'
+      preLoaderRoute: typeof MissionControlGlobalMapRouteImport
+      parentRoute: typeof MissionControlRoute
+    }
+    '/mission-control/alerts': {
+      id: '/mission-control/alerts'
+      path: '/alerts'
+      fullPath: '/mission-control/alerts'
+      preLoaderRoute: typeof MissionControlAlertsRouteImport
+      parentRoute: typeof MissionControlRoute
+    }
   }
 }
+
+interface MissionControlRouteChildren {
+  MissionControlAlertsRoute: typeof MissionControlAlertsRoute
+  MissionControlGlobalMapRoute: typeof MissionControlGlobalMapRoute
+  MissionControlImpactDashboardRoute: typeof MissionControlImpactDashboardRoute
+  MissionControlSystemHealthRoute: typeof MissionControlSystemHealthRoute
+}
+
+const MissionControlRouteChildren: MissionControlRouteChildren = {
+  MissionControlAlertsRoute: MissionControlAlertsRoute,
+  MissionControlGlobalMapRoute: MissionControlGlobalMapRoute,
+  MissionControlImpactDashboardRoute: MissionControlImpactDashboardRoute,
+  MissionControlSystemHealthRoute: MissionControlSystemHealthRoute,
+}
+
+const MissionControlRouteWithChildren = MissionControlRoute._addFileChildren(
+  MissionControlRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -307,7 +403,7 @@ const rootRouteChildren: RootRouteChildren = {
   InvestmentRoute: InvestmentRoute,
   KnowledgeRoute: KnowledgeRoute,
   LabsRoute: LabsRoute,
-  MissionControlRoute: MissionControlRoute,
+  MissionControlRoute: MissionControlRouteWithChildren,
   SettingsRoute: SettingsRoute,
 }
 export const routeTree = rootRouteImport

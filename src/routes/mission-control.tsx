@@ -3,6 +3,7 @@ import {
   Target, Layers, Filter, Map, Network, Fullscreen, ChevronRight, TrendingUp,
   Leaf, Sprout, TreePine, Heart, Rocket, Users, ShieldCheck, Sparkles, AlertTriangle,
   Lightbulb, FlaskConical, Activity, Compass, HandCoins, FileText, UsersRound,
+  Zap, Calendar, Waypoints, Wallet, TrendingDown,
 } from "lucide-react";
 import { AppShell } from "@/components/atlas/AppShell";
 import { Globe, HexIcon, Ring, Sparkline } from "@/components/atlas/primitives";
@@ -18,7 +19,8 @@ const stats = [
   { icon: TreePine, label: "HECTARES RESTORED", value: "4.78M", unit: "ha", change: "+7.1%", color: "#facc15" },
   { icon: Heart, label: "LIVES IMPROVED", value: "236.7M", change: "+5.8%", color: "#c084fc" },
   { icon: Rocket, label: "INVESTMENTS MOBILIZED", value: "$98.6B", change: "+10.3%", color: "#22d3ee" },
-  { icon: Users, label: "ACTIVE PARTNERS", value: "872", change: "+6.2%", color: "#38bdf8" },
+  { icon: Users, label: "ACTIVE PROJECTS", value: "24,153", change: "+9.3%", color: "#38bdf8" },
+  { icon: Zap, label: "IMPACT GENERATED", value: "$1.89T", change: "+11.2%", color: "#f472b6" },
 ];
 
 const mission = [
@@ -63,6 +65,66 @@ const quick = [
   { icon: UsersRound, l: "Contact Partners", c: "#c084fc" },
   { icon: AlertTriangle, l: "Emergency Response", c: "#f472b6" },
   { icon: Activity, l: "System Diagnostics", c: "#38bdf8" },
+];
+
+const activity = [
+  { t: "Amazon Basin Restoration",       loc: "Brazil · Forest Restoration",      time: "2m ago",  v: "+2,450 ha",   c: "#4ade80" },
+  { t: "Mangrove Restoration Initiative",loc: "Indonesia · Coastal Protection",   time: "5m ago",  v: "+1,200 ha",   c: "#22d3ee" },
+  { t: "Blue Carbon Project",            loc: "Kenya · Mangrove Conservation",    time: "7m ago",  v: "+750 tCO₂",   c: "#a3e635" },
+  { t: "Regenerative Agriculture",       loc: "India · Soil Health Improvement", time: "10m ago", v: "+3,100 ha",   c: "#facc15" },
+  { t: "Ocean Plastic Cleanup",          loc: "Pacific Ocean · Waste Removal",    time: "12m ago", v: "+60 tons",    c: "#c084fc" },
+];
+
+const rve = [
+  { l: "Carbon",           v: "$866.3B", c: "#4ade80" },
+  { l: "Biodiversity",     v: "$432.7B", c: "#22d3ee" },
+  { l: "Water",            v: "$218.6B", c: "#38bdf8" },
+  { l: "Oceans",           v: "$276.4B", c: "#a3e635" },
+  { l: "Renewable Energy", v: "$312.8B", c: "#facc15" },
+  { l: "Soil Health",      v: "$198.4B", c: "#c084fc" },
+  { l: "Circular Economy", v: "$156.3B", c: "#f472b6" },
+  { l: "Health & Wellness",v: "$108.7B", c: "#f59e0b" },
+];
+
+const topProjects = [
+  { t: "Amazon Basin Restoration",         cat: "Forest Restoration",         v: "$286.7M", c: "#4ade80" },
+  { t: "Global Mangrove Alliance",         cat: "Coastal Protection",         v: "$198.4M", c: "#22d3ee" },
+  { t: "Regenerative Agriculture Network", cat: "Sustainable Agriculture",    v: "$172.3M", c: "#a3e635" },
+  { t: "Ocean Plastic Cleanup System",     cat: "Ocean Health",               v: "$156.8M", c: "#38bdf8" },
+  { t: "Community Health Initiative",      cat: "Human Health",               v: "$134.6M", c: "#c084fc" },
+];
+
+const marketRows = [
+  { a: "Carbon Credit (tCO₂)",   p: "$28.45", ch: "+4.32%",  up: true,  vol: "$124.6M" },
+  { a: "Biodiversity Credit",    p: "$16.78", ch: "+6.21%",  up: true,  vol: "$98.3M"  },
+  { a: "Blue Carbon Credit",     p: "$31.22", ch: "+5.14%",  up: true,  vol: "$67.8M"  },
+  { a: "Water Credit (m³)",      p: "$0.86",  ch: "-3.27%", up: false, vol: "$42.7M"  },
+  { a: "Soil Health Credit",     p: "$14.63", ch: "+7.18%",  up: true,  vol: "$38.2M"  },
+];
+
+const pipeline = [
+  { l: "Ideation",   n: 247,   c: "#c084fc" },
+  { l: "Planning",   n: 523,   c: "#facc15" },
+  { l: "Execution",  n: 1842,  c: "#4ade80" },
+  { l: "Monitoring", n: 3521,  c: "#22d3ee" },
+];
+
+const allocation = [
+  { l: "Agriculture", pct: 28, c: "#4ade80" },
+  { l: "Oceans",      pct: 21, c: "#22d3ee" },
+  { l: "Forests",     pct: 17, c: "#a3e635" },
+  { l: "Water",       pct: 12, c: "#38bdf8" },
+  { l: "Energy",      pct: 9,  c: "#facc15" },
+  { l: "Health",      pct: 7,  c: "#c084fc" },
+  { l: "Education",   pct: 4,  c: "#f472b6" },
+  { l: "Other",       pct: 2,  c: "#94a3b8" },
+];
+
+const events = [
+  { t: "Global Climate Summit",     d: "June 5, 2025",   inN: "18" },
+  { t: "Ocean Conservation Day",    d: "June 8, 2025",   inN: "21" },
+  { t: "Q2 Impact Review",          d: "June 15, 2025",  inN: "28" },
+  { t: "Annual Steward Meeting",    d: "June 30, 2025",  inN: "43" },
 ];
 
 function MissionControl() {
@@ -129,7 +191,7 @@ function MissionControl() {
               </div>
             </section>
 
-            <div className="grid grid-cols-6 gap-3">
+            <div className="grid grid-cols-7 gap-3">
               {stats.map((s, i) => (
                 <div key={s.label} className="rounded-xl border border-white/10 bg-white/[0.03] p-3.5">
                   <div className="flex items-start gap-2">
@@ -230,6 +292,112 @@ function MissionControl() {
                 <button className="rounded-lg border border-cyan-400/30 bg-cyan-400/5 grid place-items-center text-cyan-300 text-[11px] tracking-[0.15em] font-semibold">VIEW<br/>ALL INSIGHTS</button>
               </div>
             </section>
+
+            <div className="grid grid-cols-2 gap-6">
+              <section className="rounded-xl border border-white/10 bg-white/[0.02] p-5">
+                <div className="text-[13px] font-semibold text-white">RVE FLOW OVERVIEW</div>
+                <div className="text-[11px] text-slate-500 mb-3">Value flow across markets</div>
+                <div className="space-y-1.5">
+                  {rve.map(r=>(
+                    <div key={r.l} className="flex items-center gap-2 text-[11px]">
+                      <span className="w-1.5 h-1.5 rounded-full" style={{background:r.c}}/>
+                      <span className="text-slate-300 flex-1">{r.l}</span>
+                      <span className="text-white tabular-nums">{r.v}</span>
+                    </div>
+                  ))}
+                  <div className="pt-2 mt-1 border-t border-white/10 flex justify-between text-[12px]">
+                    <span className="text-slate-400">Total Flow</span>
+                    <span className="text-white font-semibold">$2.47T</span>
+                  </div>
+                </div>
+              </section>
+              <section className="rounded-xl border border-white/10 bg-white/[0.02] p-5">
+                <div className="text-[13px] font-semibold text-white">TOP IMPACT PROJECTS</div>
+                <div className="text-[11px] text-slate-500 mb-3">By regenerative value</div>
+                <div className="space-y-2">
+                  {topProjects.map(p=>(
+                    <div key={p.t} className="flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.03] p-2.5">
+                      <HexIcon color={p.c} size={30}><Waypoints className="w-3.5 h-3.5"/></HexIcon>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-[12px] text-white truncate">{p.t}</div>
+                        <div className="text-[10px] text-slate-500 truncate">{p.cat}</div>
+                      </div>
+                      <div className="text-right shrink-0">
+                        <div className="text-[12px] text-white tabular-nums">{p.v}</div>
+                        <div className="text-[9px] text-slate-500">Impact Value</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </div>
+
+            <div className="grid grid-cols-[1fr_1.2fr] gap-6">
+              <section className="rounded-xl border border-white/10 bg-white/[0.02] p-5">
+                <div className="text-[13px] font-semibold text-white">MARKET OVERVIEW</div>
+                <div className="text-[11px] text-slate-500 mb-3">Live market data</div>
+                <div className="text-[9px] tracking-[0.2em] text-slate-500 grid grid-cols-[1.4fr_0.8fr_0.8fr_0.8fr] gap-2 pb-2 border-b border-white/10">
+                  <span>ASSET</span><span className="text-right">PRICE</span><span className="text-right">24H</span><span className="text-right">VOLUME</span>
+                </div>
+                {marketRows.map(m=>(
+                  <div key={m.a} className="text-[11px] grid grid-cols-[1.4fr_0.8fr_0.8fr_0.8fr] gap-2 py-2 border-b border-white/5 last:border-b-0 items-center">
+                    <span className="text-slate-300 truncate">{m.a}</span>
+                    <span className="text-white text-right tabular-nums">{m.p}</span>
+                    <span className={`text-right tabular-nums inline-flex items-center justify-end gap-1 ${m.up ? "text-emerald-400" : "text-rose-400"}`}>
+                      {m.up ? <TrendingUp className="w-3 h-3"/> : <TrendingDown className="w-3 h-3"/>}{m.ch}
+                    </span>
+                    <span className="text-slate-400 text-right tabular-nums">{m.vol}</span>
+                  </div>
+                ))}
+              </section>
+              <section className="rounded-xl border border-white/10 bg-white/[0.02] p-5">
+                <div className="text-[13px] font-semibold text-white">IMPACT METRICS TREND</div>
+                <div className="text-[11px] text-slate-500 mb-3">12-month trend analysis</div>
+                <div className="grid gap-2">
+                  {[
+                    {l:"Carbon Removed",c:"#4ade80",s:5},
+                    {l:"Hectares Restored",c:"#facc15",s:9},
+                    {l:"Lives Improved",c:"#c084fc",s:14},
+                    {l:"Investments",c:"#22d3ee",s:18},
+                  ].map(t=>(
+                    <div key={t.l}>
+                      <div className="flex justify-between text-[10px]"><span className="text-slate-400">{t.l}</span></div>
+                      <Sparkline color={t.c} seed={t.s}/>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </div>
+
+            <section className="rounded-xl border border-white/10 bg-white/[0.02] p-5">
+              <div className="text-[13px] font-semibold text-white">PROJECT PIPELINE</div>
+              <div className="text-[11px] text-slate-500 mb-3">Active project pipeline</div>
+              <div className="grid grid-cols-4 gap-2 mb-4">
+                {pipeline.map(p=>(
+                  <div key={p.l} className="rounded-md border border-white/10 bg-white/[0.03] p-2 text-center">
+                    <div className="text-[10px] tracking-[0.15em]" style={{color:p.c}}>{p.l.toUpperCase()}</div>
+                    <div className="text-[13px] text-white font-semibold mt-0.5">{p.n.toLocaleString()}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="grid grid-cols-4 gap-3">
+                {[
+                  {t:"Coral Reef Restoration",loc:"Australia",v:"$5.2M",c:"#22d3ee"},
+                  {t:"Solar Village Initiative",loc:"Kenya",v:"$3.2M",c:"#facc15"},
+                  {t:"Great Green Wall",loc:"Africa",v:"$8.9M",c:"#4ade80"},
+                  {t:"Mangrove Alliance",loc:"SE Asia",v:"$4.6M",c:"#38bdf8"},
+                ].map(p=>(
+                  <div key={p.t} className="rounded-lg border border-white/10 bg-white/[0.03] p-3">
+                    <div className="text-[11px] text-white truncate">{p.t}</div>
+                    <div className="text-[9px] text-slate-500">{p.loc}</div>
+                    <div className="mt-2 flex justify-between items-center">
+                      <span className="text-[9px] px-1.5 py-0.5 rounded-full border border-white/10" style={{color:p.c}}>Exec.</span>
+                      <span className="text-[11px] text-white tabular-nums">{p.v}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
           </div>
 
           <div className="space-y-4">
@@ -284,6 +452,75 @@ function MissionControl() {
                     <HexIcon color={q.c} size={38}><q.icon className="w-4 h-4"/></HexIcon>
                     <div className="text-[10px] text-slate-300 leading-tight">{q.l}</div>
                   </button>
+                ))}
+              </div>
+            </section>
+
+            <section className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+              <div className="flex justify-between items-center mb-3">
+                <div>
+                  <div className="text-[13px] font-semibold text-white">LIVE ACTIVITY FEED</div>
+                  <div className="text-[10px] text-slate-500">Real-time regenerative activity</div>
+                </div>
+                <button className="text-[10px] text-cyan-300 inline-flex items-center gap-1">View all <ChevronRight className="w-3 h-3"/></button>
+              </div>
+              <div className="space-y-3">
+                {activity.map(a=>(
+                  <div key={a.t} className="flex gap-3">
+                    <HexIcon color={a.c} size={30}><Activity className="w-3.5 h-3.5"/></HexIcon>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex justify-between"><div className="text-[11.5px] text-white truncate">{a.t}</div><div className="text-[9px] text-slate-500 shrink-0">{a.time}</div></div>
+                      <div className="text-[10px] text-slate-400 truncate">{a.loc}</div>
+                      <div className="text-[10px] tabular-nums" style={{color:a.c}}>{a.v}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+              <div className="text-[13px] font-semibold text-white">RESOURCE ALLOCATION</div>
+              <div className="text-[10px] text-slate-500 mb-3">Current allocation by sector</div>
+              <div className="grid grid-cols-[100px_1fr] gap-3 items-center">
+                <div className="relative">
+                  <svg viewBox="0 0 100 100" className="w-24 h-24 -rotate-90">
+                    {(()=>{ let acc=0; const c=2*Math.PI*40; return allocation.map(s=>{const p=s.pct/100; const dash=`${p*c} ${c}`; const el=<circle key={s.l} cx="50" cy="50" r="40" fill="none" stroke={s.c} strokeWidth="14" strokeDasharray={dash} strokeDashoffset={-acc*c}/>; acc+=p; return el;});})()}
+                  </svg>
+                  <div className="absolute inset-0 grid place-items-center text-center">
+                    <div>
+                      <div className="text-[12px] font-semibold text-white">$98.6B</div>
+                      <div className="text-[8px] text-slate-400">Total</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  {allocation.map(s=>(
+                    <div key={s.l} className="flex items-center gap-2 text-[10px]">
+                      <span className="w-1.5 h-1.5 rounded-full" style={{background:s.c}}/>
+                      <span className="text-slate-300 flex-1 truncate">{s.l}</span>
+                      <span className="text-white tabular-nums">{s.pct}%</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            <section className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+              <div className="text-[13px] font-semibold text-white">UPCOMING EVENTS</div>
+              <div className="text-[10px] text-slate-500 mb-3">Important events and milestones</div>
+              <div className="space-y-2">
+                {events.map(e=>(
+                  <div key={e.t} className="flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.03] p-2.5">
+                    <HexIcon color="#22d3ee" size={30}><Calendar className="w-3.5 h-3.5"/></HexIcon>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-[11.5px] text-white truncate">{e.t}</div>
+                      <div className="text-[10px] text-slate-500">{e.d}</div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-[12px] text-white tabular-nums">{e.inN}</div>
+                      <div className="text-[9px] text-slate-500">days</div>
+                    </div>
+                  </div>
                 ))}
               </div>
             </section>

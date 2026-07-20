@@ -1,9 +1,10 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import {
   Home, Target, Sprout, Repeat, Brain, BookOpen, FlaskConical, Wallet,
   Users, Landmark, BarChart3, Code2, Settings, Globe2, Bell, Mail,
-  ChevronDown, Menu, X, Circle,
+  ChevronDown, ChevronRight, Menu, X, Circle,
+  LayoutDashboard, Map as MapIcon, Gauge, HeartPulse, BellRing,
 } from "lucide-react";
 import { Globe, HexIcon } from "./primitives";
 import atlas from "@/content/atlas.json";
@@ -13,9 +14,25 @@ import { ContentValidationBanner } from "./ContentValidationBanner";
 const ICONS: Record<string, any> = {
   Home, Target, Sprout, Repeat, Brain, BookOpen, FlaskConical, Wallet,
   Users, Landmark, BarChart3, Code2, Settings,
+  LayoutDashboard, Map: MapIcon, Gauge, HeartPulse, BellRing,
 };
 
+type NavNode = { icon: string; label: string; to: string; children?: NavNode[] };
+
 function SidebarInner({ active, onNavigate }: { active: string; onNavigate?: () => void }) {
+  const nav = atlas.nav as NavNode[];
+  const parentOfActive = useMemo(
+    () => nav.find((n) => n.children?.some((c) => c.label === active))?.label,
+    [nav, active],
+  );
+  const [open, setOpen] = useState<Record<string, boolean>>(() => {
+    const init: Record<string, boolean> = {};
+    nav.forEach((n) => {
+      if (n.children) init[n.label] = n.label === active || n.label === parentOfActive;
+    });
+    return init;
+  });
+
   return (
     <>
       <div className="px-5 py-6 flex items-center gap-3 border-b border-white/5">
@@ -32,23 +49,66 @@ function SidebarInner({ active, onNavigate }: { active: string; onNavigate?: () 
         </div>
       </div>
       <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
-        {atlas.nav.map((item) => {
+        {nav.map((item) => {
           const Icon = ICONS[item.icon] ?? Circle;
           const isActive = item.label === active;
+          const hasChildren = !!item.children?.length;
+          const isOpen = !!open[item.label];
+          const parentHighlighted = isActive || item.label === parentOfActive;
           return (
-            <Link
-              key={item.label}
-              to={item.to}
-              onClick={onNavigate}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] transition ${
-                isActive
-                  ? "bg-cyan-400/10 text-cyan-300 border border-cyan-400/20"
-                  : "text-slate-400 hover:text-slate-200 hover:bg-white/5"
-              }`}
-            >
-              <Icon className="w-4 h-4" />
-              <span>{item.label}</span>
-            </Link>
+            <div key={item.label}>
+              <div
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] transition ${
+                  parentHighlighted
+                    ? "bg-cyan-400/10 text-cyan-300 border border-cyan-400/20"
+                    : "text-slate-400 hover:text-slate-200 hover:bg-white/5"
+                }`}
+              >
+                <Link
+                  to={item.to}
+                  onClick={onNavigate}
+                  className="flex items-center gap-3 flex-1 min-w-0"
+                >
+                  <Icon className="w-4 h-4 shrink-0" />
+                  <span className="truncate">{item.label}</span>
+                </Link>
+                {hasChildren && (
+                  <button
+                    aria-label={isOpen ? "Collapse" : "Expand"}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setOpen((s) => ({ ...s, [item.label]: !s[item.label] }));
+                    }}
+                    className="p-0.5 text-slate-400 hover:text-white"
+                  >
+                    {isOpen ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronRight className="w-3.5 h-3.5" />}
+                  </button>
+                )}
+              </div>
+              {hasChildren && isOpen && (
+                <div className="mt-0.5 ml-3 pl-3 border-l border-white/5 space-y-0.5">
+                  {item.children!.map((c) => {
+                    const CIcon = ICONS[c.icon] ?? Circle;
+                    const cActive = c.label === active;
+                    return (
+                      <Link
+                        key={c.label}
+                        to={c.to}
+                        onClick={onNavigate}
+                        className={`flex items-center gap-2.5 px-3 py-2 rounded-md text-[12px] transition ${
+                          cActive
+                            ? "bg-cyan-400/10 text-cyan-300"
+                            : "text-slate-400 hover:text-slate-200 hover:bg-white/5"
+                        }`}
+                      >
+                        <CIcon className="w-3.5 h-3.5 shrink-0" />
+                        <span className="truncate">{c.label}</span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           );
         })}
       </nav>
