@@ -20,6 +20,7 @@
     { "icon": "Landmark", "label": "Governance", "to": "/governance" },
     { "icon": "BarChart3", "label": "Data & Analytics", "to": "/analytics" },
     { "icon": "Code2", "label": "Developers", "to": "/developers" },
+    { "icon": "Boxes", "label": "Design System", "to": "/design-system" },
     { "icon": "Settings", "label": "System Settings", "to": "/settings" }
   ],
   "notifications": [
