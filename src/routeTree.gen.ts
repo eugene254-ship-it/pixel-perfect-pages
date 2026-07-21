@@ -19,6 +19,7 @@ import { Route as GovernanceRouteImport } from './routes/governance'
 import { Route as ExchangeRouteImport } from './routes/exchange'
 import { Route as EcosystemsRouteImport } from './routes/ecosystems'
 import { Route as DevelopersRouteImport } from './routes/developers'
+import { Route as DesignSystemRouteImport } from './routes/design-system'
 import { Route as CommunityRouteImport } from './routes/community'
 import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as IndexRouteImport } from './routes/index'
@@ -77,6 +78,11 @@ const DevelopersRoute = DevelopersRouteImport.update({
   path: '/developers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DesignSystemRoute = DesignSystemRouteImport.update({
+  id: '/design-system',
+  path: '/design-system',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CommunityRoute = CommunityRouteImport.update({
   id: '/community',
   path: '/community',
@@ -119,6 +125,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/analytics': typeof AnalyticsRoute
   '/community': typeof CommunityRoute
+  '/design-system': typeof DesignSystemRoute
   '/developers': typeof DevelopersRoute
   '/ecosystems': typeof EcosystemsRoute
   '/exchange': typeof ExchangeRoute
@@ -138,6 +145,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/analytics': typeof AnalyticsRoute
   '/community': typeof CommunityRoute
+  '/design-system': typeof DesignSystemRoute
   '/developers': typeof DevelopersRoute
   '/ecosystems': typeof EcosystemsRoute
   '/exchange': typeof ExchangeRoute
@@ -158,6 +166,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/analytics': typeof AnalyticsRoute
   '/community': typeof CommunityRoute
+  '/design-system': typeof DesignSystemRoute
   '/developers': typeof DevelopersRoute
   '/ecosystems': typeof EcosystemsRoute
   '/exchange': typeof ExchangeRoute
@@ -179,6 +188,7 @@ export interface FileRouteTypes {
     | '/'
     | '/analytics'
     | '/community'
+    | '/design-system'
     | '/developers'
     | '/ecosystems'
     | '/exchange'
@@ -198,6 +208,7 @@ export interface FileRouteTypes {
     | '/'
     | '/analytics'
     | '/community'
+    | '/design-system'
     | '/developers'
     | '/ecosystems'
     | '/exchange'
@@ -217,6 +228,7 @@ export interface FileRouteTypes {
     | '/'
     | '/analytics'
     | '/community'
+    | '/design-system'
     | '/developers'
     | '/ecosystems'
     | '/exchange'
@@ -237,6 +249,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnalyticsRoute: typeof AnalyticsRoute
   CommunityRoute: typeof CommunityRoute
+  DesignSystemRoute: typeof DesignSystemRoute
   DevelopersRoute: typeof DevelopersRoute
   EcosystemsRoute: typeof EcosystemsRoute
   ExchangeRoute: typeof ExchangeRoute
@@ -321,6 +334,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DevelopersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/design-system': {
+      id: '/design-system'
+      path: '/design-system'
+      fullPath: '/design-system'
+      preLoaderRoute: typeof DesignSystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/community': {
       id: '/community'
       path: '/community'
@@ -395,6 +415,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnalyticsRoute: AnalyticsRoute,
   CommunityRoute: CommunityRoute,
+  DesignSystemRoute: DesignSystemRoute,
   DevelopersRoute: DevelopersRoute,
   EcosystemsRoute: EcosystemsRoute,
   ExchangeRoute: ExchangeRoute,
@@ -409,13 +430,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

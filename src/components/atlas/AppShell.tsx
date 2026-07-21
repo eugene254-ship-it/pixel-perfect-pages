@@ -4,7 +4,7 @@ import {
   Home, Target, Sprout, Repeat, Brain, BookOpen, FlaskConical, Wallet,
   Users, Landmark, BarChart3, Code2, Settings, Globe2, Bell, Mail,
   ChevronDown, ChevronRight, Menu, X, Circle,
-  LayoutDashboard, Map as MapIcon, Gauge, HeartPulse, BellRing,
+  LayoutDashboard, Map as MapIcon, Gauge, HeartPulse, BellRing, Boxes,
 } from "lucide-react";
 import { Globe, HexIcon } from "./primitives";
 import atlas from "@/content/atlas.json";
@@ -14,7 +14,7 @@ import { ContentValidationBanner } from "./ContentValidationBanner";
 const ICONS: Record<string, any> = {
   Home, Target, Sprout, Repeat, Brain, BookOpen, FlaskConical, Wallet,
   Users, Landmark, BarChart3, Code2, Settings,
-  LayoutDashboard, Map: MapIcon, Gauge, HeartPulse, BellRing,
+  LayoutDashboard, Map: MapIcon, Gauge, HeartPulse, BellRing, Boxes,
 };
 
 type NavNode = { icon: string; label: string; to: string; children?: NavNode[] };
